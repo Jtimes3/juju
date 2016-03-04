@@ -1,0 +1,24 @@
+{
+  "name": "juju",
+  "version": "1.0.0",
+  "description": "Track the price of items based on your own",
+  "main": "/server/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jtimes3/juju.git"
+  },
+  "author": "Joe Ashby, Madison Dunitz, Jessica Park, James Youn",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jtimes3/juju/issues"
+  },
+  "homepage": "https://github.com/Jtimes3/juju#readme",
+  "dependencies": {
+    "body-parser": "1.15.0",
+    "express": "4.13.4",
+    "morgan": "1.7.0"
+  }
+}
