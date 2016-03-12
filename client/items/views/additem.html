@@ -1,0 +1,13 @@
+<div ng-controller='itemCtrl'> 
+  <h2>add item</h2>
+  <form name='addItemForm' ng-submit='addItem()'>
+    Item to Watch: <br>
+    <input type="text" name='itemNickname' placeholder='itemNickname' ng-model='item.nickname'><br>
+    Item URL: <br>
+    <input type='text' name='itemURL' placeholder='www.itemIWantToWatch.com' ng-model='item.URL'><br>
+    Ideal Price: <br>
+    <input type='text' name=idealPrice placeholder={{item.currentPrice}} ng-model='item.idealPrice'> 
+    <button type='submit' class='button' >Add Item!</button>
+  </form>
+  <h1>{{ test}}</h1>
+  <img ng-src= '{{ item.imageUrl }}' ></div>

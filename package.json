@@ -4,7 +4,10 @@
   "description": "Track the price of items based on your own",
   "main": "/server/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jasmine",
+    "tc": "karma start",
+    "start:server": "node server/index",
+    "dev:server": "nodemon server/index"
   },
   "repository": {
     "type": "git",
@@ -16,9 +19,62 @@
     "url": "https://github.com/Jtimes3/juju/issues"
   },
   "homepage": "https://github.com/Jtimes3/juju#readme",
+  "engine": {
+    "node": "5.6.0"
+  },
   "dependencies": {
+    "angular": "1.5.0",
+    "angular-environment": "1.0.3",
+    "angular-ui-router": "0.2.18",
     "body-parser": "1.15.0",
+    "chai": "3.5.0",
+    "cheerio": "0.20.0",
+    "cron": "1.1.0",
+    "dotenv": "2.0.0",
     "express": "4.13.4",
-    "morgan": "1.7.0"
+    "gulp": "3.9.1",
+    "gulp-concat": "2.6.0",
+    "gulp-sourcemaps": "1.6.0",
+    "jasmine": "2.4.1",
+    "jasmine-core": "2.4.1",
+    "karma-jasmine": "0.3.7",
+    "karma-mocha-reporter": "2.0.0",
+    "morgan": "1.7.0",
+    "node-env-file": "0.1.8",
+    "pg": "4.5.1",
+    "pg-promise": "3.3.0",
+    "request": "2.69.0",
+    "require": "2.4.20"
+  },
+  "devDependencies": {
+    "angular-mocks": "1.5.0",
+    "brfs": "1.4.3",
+    "browserify": "13.0.0",
+    "del": "2.2.0",
+    "gulp": "3.9.1",
+    "gulp-cli": "1.2.1",
+    "gulp-jshint": "2.0.0",
+    "gulp-uglify": "1.5.3",
+    "gulp-util": "3.0.7",
+    "jasmine": "2.4.1",
+    "jasmine-core": "2.4.1",
+    "jshint": "2.9.1",
+    "jshint-stylish": "2.1.0",
+    "karma": "0.13.21",
+    "karma-browserify": "5.0.2",
+    "karma-chai": "0.1.0",
+    "karma-chrome-launcher": "0.2.2",
+    "karma-jasmine": "0.3.7",
+    "karma-jasmine-html-reporter": "0.2.0",
+    "karma-mocha": "0.2.2",
+    "karma-mocha-debug": "0.1.2",
+    "karma-nyan-reporter": "0.2.3",
+    "karma-requirejs": "0.2.5",
+    "karma-should": "1.0.0",
+    "lodash": "4.6.1",
+    "mocha": "2.4.5",
+    "requirejs": "2.1.22",
+    "should": "8.2.2",
+    "watchify": "3.7.0"
   }
 }

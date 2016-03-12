@@ -1,0 +1,7 @@
+DROP TABLE users CASCADE;
+
+DROP TABLE items CASCADE;
+
+DROP TABLE itemHistories CASCADE;
+
+DROP TABLE watchedItems CASCADE;
