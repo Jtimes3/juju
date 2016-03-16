@@ -13,7 +13,7 @@ describe('Add item factory', function(){
     Item = $injector.get('Item'); // this is okay
 
     createController = function() {
-      return $controller('itemCtrl', {
+      return $controller('itemsCtrl', {
         $scope: $scope,
         Item: Item
       });
@@ -38,10 +38,6 @@ describe('Add item factory', function(){
   });
 
   describe('Item Controller', function(){
-    it('should have poop', function(){
-      expect($scope.test).toBe('poop');
-    });
-
     it('should have add item function', function(){
       expect(typeof $scope.addItem).toBe('function');
     });

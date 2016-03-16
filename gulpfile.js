@@ -2,6 +2,7 @@ var gulp = require('gulp');
 // var browserify = require('browserify');
 var jshint = require('gulp-jshint');
 var concat = require('gulp-concat');
+var jasmine = require('gulp-jasmine');
 // var uglify = require('gulp-uglify');
 // var gutil = require('gulp-util');
 // var def = require('del');
@@ -28,6 +29,10 @@ var customOpts = {
   debug: true
 };
 
+gulp.task('testServer', function() {
+  gulp.src('spec/server/**.*js')
+  .pipe(jasmine());
+});
 
 gulp.task('lint', function() {
 	return gulp.src(path.scripts)
@@ -43,7 +48,7 @@ gulp.task('lint', function() {
 // })
 
 gulp.task('scripts', function() {
-	gulp.watch(path.scripts,['lint']);
+	gulp.watch(path.scripts,['testServer']);
 });
 
 // gulp.task('process-style', function() {

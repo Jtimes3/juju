@@ -1,0 +1,17 @@
+
+<div ng-controller="usersCtrl"> 
+  <h2>Update your profile</h2>
+  <form name="updateUserForm" ng-submit="updateUser()">
+    <!--<h1>{{userData}}</h1>-->
+    Your name: {{userData.username}} <br>
+    Your email: {{userData.emil}} 
+    <input type="text" name="email" placeholder="@example.com" ng-model="userData.email">
+    <br>
+    Your phone number: {{userData.phonenumber}}
+    <input type="text" name="phonenumber" placeholder="415-111-0000" ng-model="userData.phonenumber">
+    <br>
+    <button type="submit" class="button" ng-click="updateUserInfo(userData.id,userData)">Update</button>
+
+  </form>
+  
+</div>

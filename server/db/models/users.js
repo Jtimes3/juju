@@ -1,39 +1,40 @@
 var express = require('express');
+// var config = require('./../../../config.js');
 var router = express.Router();
 var pg = require('pg');
 var pgp = require('pg-promise')(/*options*/)
-var connectionString = process.env.DATABASE_URL || 'postgres://localhost:5432/juju';
+var connectionString = process.env.DATABASE_URL || config.connectionString;
 var db = pgp(connectionString);
 
-// var client = new pg.Client(connectionString);
-// client.connect();
-// var query = client.query('CREATE TABLE items(id SERIAL PRIMARY KEY, text VARCHAR(40) not null, complete BOOLEAN)');
-// query.on('end', function() {
+router.post('/api/users', usersPost);
+router.get('/api/users', usersGet);
+router.get('/api/users/:user_id', userOneUserInfo);
+router.put('/api/users/:user_id', userUpdate);
 
-//   console.log('hello bitches')
-//   client.end(); });
-
-router.post('/api/users', function(req, res) {
+function usersPost(req, res) {
   var results = [];
   console.log('req', req.body)
-  
+
   // Grab data from http request
   var data = {
     email: req.body.email,
     phoneNumber: req.body.phoneNumber,
     FBuID:req.body.FBuID,
-    userName:req.body.userName
+    FBname:req.body.FBname
   };
     console.log('data', data.FBuID)
 
   // Get a Postgres client from the connection pool
+  // if user exists in the db it won't create a new user and fetch it's user ID
   db.task(function(t) {
     return t.oneOrNone('SELECT id FROM users WHERE FBuID=${FBuID}', data)
     .then(function(userID){
       if(userID){
         res.send(userID)
       }else{
-        return t.one('INSERT INTO users(email, phoneNumber, FBuID, userName) values(${email}, ${phoneNumber}, ${FBuID}, ${userName}) returning id', data)
+
+        // if user doesn't exist in the db a new one will be created
+        return t.one('INSERT INTO users(email, phoneNumber, FBuID, FBname) values(${email}, ${phoneNumber}, ${FBuID}, ${FBname}) returning id', data)
       }
     })
     .catch(function(error){
@@ -43,15 +44,13 @@ router.post('/api/users', function(req, res) {
       res.send(userID)
     });
   });
-});
-
+}
 
 // CREATE A SINGLE USER
 //curl --data "email=juju@test.com2&phoneNumber=415-111-111&FBuID=jujupw&userName=AdminJuJu" http://127.0.0.1:3000/api/users
 
-
 //READ GET ALL USERS
-router.get('/api/users', function(req, res) {
+function usersGet(req, res) {
 
   var results = [];
 
@@ -78,11 +77,36 @@ router.get('/api/users', function(req, res) {
       return res.json(results);
     });
   });
-});
+}
 
+//READ GETT ONE SINGLE USER
+function userOneUserInfo (req, res){
+  var results = [];
+  var id = req.params.user_id;
+
+  pg.connect(connectionString, function(err, client, done){
+    if(err){
+      done();
+      console.log(err);
+      return res.status(500).json({ success: false, data: err});
+    }
+
+  var query = client.query('SELECT * FROM users WHERE id=($1)', [id]);
+
+  query.on('row', function(row) {
+      results.push(row);
+    });
+
+  query.on('end', function() {
+      done();
+      return res.json(results);
+    });
+
+  })
+}
 //UPDATE A SINGLE USER
 //curl -X PUT --data "email=test@test.com&phoneNumber=510-111-1111&FBuID=jujupw&userName=JuJu" http://127.0.0.1:3000/api/users/1
-router.put('/api/users/:user_id', function(req, res) {
+function userUpdate(req, res) {
 
   var results = [];
 
@@ -90,7 +114,7 @@ router.put('/api/users/:user_id', function(req, res) {
   var id = req.params.user_id;
 
   // Grab data from http request
-  var data = {email: req.body.email, phoneNumber: req.body.phoneNumber, FBuID:req.body.FBuID, userName:req.body.userName};
+  var data = {email: req.body.email, phoneNumber: req.body.phonenumber, FBuID:req.body.FBuID, userName:req.body.username};
 
   // Get a Postgres client from the connection pool
   pg.connect(connectionString, function(err, client, done) {
@@ -102,7 +126,7 @@ router.put('/api/users/:user_id', function(req, res) {
     };
 
     // SQL Query > Update Data
-    client.query('UPDATE users SET email=($1), phoneNumber=($2), FBuID=($3), userName=($4) WHERE id=($5)', [data.email, data.phoneNumber, data.FBuID, data.userName, id]);
+    client.query('UPDATE users SET email=($1), phoneNumber=($2)  WHERE id=($3)', [data.email, data.phoneNumber, id]);
 
     // SQL Query > Select Data
     var query = client.query('SELECT * FROM users ORDER BY id ASC');
@@ -118,6 +142,5 @@ router.put('/api/users/:user_id', function(req, res) {
       return res.json(results);
     });
   });
-});
-
+}
 module.exports = router;

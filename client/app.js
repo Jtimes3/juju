@@ -2,9 +2,11 @@ var app = angular.module('juju', [
   'ui.router',
   'facebook',
   'authFactory',
-  'juju.item',
+  'displayItemsController',
   'itemFactory',
-  'displayItemsController'
+  'juju.item',
+  'juju.user',
+  'userFactory'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider){
@@ -16,7 +18,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
     views: {
       'body' : {
         templateUrl:'./items/views/item.html',
-        controller: 'displayItemsController'
+        controller: 'displayItemsCtrl'
       },
       'header' : {
         templateUrl: './layout/header.html'
@@ -34,7 +36,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
         templateUrl: './layout/header.html'
       }
     },
-    controller: 'itemCtrl',
+    controller: 'itemsCtrl',
     authenticate: true
   })
   .state('login', {
@@ -48,6 +50,19 @@ app.config(function ($stateProvider, $urlRouterProvider){
       }
     },
     controller: 'fbAuthCtrl'
+  })
+  .state('usersettings',{
+    url: '/users',
+    views: {
+      'header': {
+        templateUrl: './layout/header.html',
+        controller: 'usersCtrl'
+      },
+      'body' : {
+        templateUrl: './users/views/usersettings.html'
+      }
+    },
+    authenticate: true
   });
 })
 .run(function($rootScope, $state, Auth){

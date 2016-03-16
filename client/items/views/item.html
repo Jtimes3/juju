@@ -1,10 +1,23 @@
-<div class = 'row'>
+<div class = "row">
   <div  ng-repeat = "item in itemData">
     <div class = "col-md-4">
-      <div id='name'> {{ item.name }} </div>
+      <div id="name"> {{"item nickname " + item.nickname }} </div>
+      <div> product title = {{item.producttitle}} </div>
+      <div> item id = {{item.id}}</div>
+      <div>
+        <button ng-click="deleteWatched(item.id)"> delete </button>
+      </div>
       <img ng-src = "{{ item.itemimageurl }}">
-      <div id='price'> {{"current price $" + item.currentprice }} </div>
+      <div id="price"> {{"current price " + item.currentprice }} </div>
+      <div>ideal price : {{item.idealprice}}
+          <input type = "text" ng-model= "item.idealprice">
+          <a href="" ng-click="update(item.id, item)">update</a>
+      </div>
     </div>
+    <!--<div>{{item}}</div>-->
+    <hr>
   </div>
-  <div class='col-md-4'> <a ui-sref="additems">add item</a> </div>
+  <div class="col-md-4">
+   <a ui-sref="additems">add item</a> 
+  </div>
 </div>

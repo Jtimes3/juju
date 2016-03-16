@@ -44,7 +44,8 @@
     "pg": "4.5.1",
     "pg-promise": "3.3.0",
     "request": "2.69.0",
-    "require": "2.4.20"
+    "require": "2.4.20",
+    "underscore": "1.8.3"
   },
   "devDependencies": {
     "angular-mocks": "1.5.0",
@@ -53,6 +54,7 @@
     "del": "2.2.0",
     "gulp": "3.9.1",
     "gulp-cli": "1.2.1",
+    "gulp-jasmine": "2.3.0",
     "gulp-jshint": "2.0.0",
     "gulp-uglify": "1.5.3",
     "gulp-util": "3.0.7",

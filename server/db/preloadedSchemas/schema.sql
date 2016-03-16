@@ -3,8 +3,9 @@ CREATE TABLE users (
   id SERIAL PRIMARY KEY, 
   email VARCHAR(50) UNIQUE,
   phoneNumber VARCHAR(13),
+  contactPref VARCHAR(15),
   FBuID VARCHAR(250) UNIQUE,
-  userName VARCHAR(250)
+  FBname VARCHAR(250)
 );
 
 
@@ -12,7 +13,7 @@ DROP TABLE IF EXISTS items CASCADE;
 
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(100),
+  productTitle VARCHAR(100),
   itemUrl VARCHAR(250) UNIQUE,
   itemImageUrl VARCHAR(250),
   currentPrice MONEY
@@ -34,6 +35,7 @@ DROP TABLE IF EXISTS watchedItems CASCADE;
 CREATE TABLE watchedItems (
   id SERIAL PRIMARY KEY,
   deadline DATE,
+  nickName VARCHAR(100),
   idealPrice MONEY,
   settlePrice MONEY,
   priceReached BOOLEAN,
