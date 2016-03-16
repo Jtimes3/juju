@@ -4,8 +4,8 @@ CREATE TABLE users (
   email VARCHAR(50) UNIQUE,
   phoneNumber VARCHAR(13),
   contactPref VARCHAR(15),
-  FBuID VARCHAR(250) UNIQUE,
-  FBname VARCHAR(250)
+  FBuID VARCHAR(255) UNIQUE,
+  FBname VARCHAR(255)
 );
 
 
@@ -13,9 +13,9 @@ DROP TABLE IF EXISTS items CASCADE;
 
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
-  productTitle VARCHAR(100),
-  itemUrl VARCHAR(250) UNIQUE,
-  itemImageUrl VARCHAR(250),
+  productTitle VARCHAR(255),
+  itemUrl VARCHAR(255) UNIQUE,
+  itemImageUrl VARCHAR(255),
   currentPrice MONEY
 );
 
