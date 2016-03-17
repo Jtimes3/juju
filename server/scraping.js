@@ -1,6 +1,8 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
+//something for jessica
+
 //scrapes item data from target
 var scrape = function(req, response){
   var url = req.body.url;

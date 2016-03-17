@@ -2,8 +2,12 @@
 <div ng-controller="usersCtrl"> 
   <h2>Update your profile</h2>
   <form name="updateUserForm" ng-submit="updateUser()">
-    <!--<h1>{{userData}}</h1>-->
-    Your name: {{userData.username}} <br>
+    <h5>{{userData}}</h5>
+    Your name: {{userData.username}}
+    <input type="text" name="fbname" placeholder="userData.fbname" ng-model="userData.fbname"> 
+    <br>
+    Your preference: {{userData.preference}} 
+    <input type="text" name="preference" placeholder="text/email" ng-model="userData.contactpref">
     Your email: {{userData.emil}} 
     <input type="text" name="email" placeholder="@example.com" ng-model="userData.email">
     <br>

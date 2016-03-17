@@ -4,7 +4,7 @@ var connectionString;
 
 // handling DB connection for tests
 if(process.env.NODE_ENV === 'test'){
-  connectionString = 'postgres://localhost:5432/jujuTestDB';
+  connectionString = 'postgres://localhost:5432/jujutestdb';
 } else if(process.env.NODE_ENV !== 'test') {
   connectionString = process.env.DATABASE_URL || require('./../../config.js').connectionString;
 }
@@ -19,8 +19,7 @@ module.exports = {
   //curl --data 'name=photo&itemUrl=www.photo.com&itemImageUrl=www.photo.com&currentPrice=9000' http://127.0.0.1:3000/api/v1/items
   // After all data is returned, close connection and return results
 
-   addItem : function (req, res) {
-    console.log("sent to add item")
+  addItem : function (req, res) {
     var results = [];
     // Grab data from http request
     var data = {
@@ -33,38 +32,33 @@ module.exports = {
       createdDate : req.body.createdDate,
       userId : req.body.userId
     };
-    console.log(data)
     // Get a Postgres client from the connection pool
     db.task(function(t) {
-      console.log("attempt to log in db")
-      return t.oneOrNone('SELECT id FROM items WHERE itemUrl=${itemUrl}', data)
-      .then(function(itemID){
-        if(itemID){
-          data.itemId=itemID.id;
-          console.log('in first promise')
-          t.one('INSERT INTO watchedItems(idealPrice, priceReached, emailed, nickName, itemID, userID) values (${idealPrice}, false, false, ${itemNickName} ${itemId}, ${userId})', data)
-          res.send(itemID)
-        } else {
-          return t.one('INSERT INTO items(productTitle, itemUrl, itemImageUrl, currentPrice) values(${productTitle}, ${itemUrl}, ${itemImageUrl}, ${currentPrice}) returning id', data)
-        }
+      return t.oneOrNone('INSERT INTO items (productTitle, itemUrl, itemImageUrl, currentPrice) SELECT ${productTitle}, ${itemUrl}, ${itemImageUrl}, ${currentPrice} WHERE NOT EXISTS (SELECT 1 FROM items WHERE itemUrl=${itemUrl})', data)
+      .catch(function(err){
+        console.log('error adding item: ', err);
+      })
+      .then(function(){
+        return t.oneOrNone('SELECT id FROM items WHERE itemUrl=${itemUrl}', data)
+      })
+      .catch(function(err){
+        console.log('Item ID select error: ', err);
       })
       .then(function(itemID){
         data.itemId=itemID.id
-        return t.one('INSERT INTO watchedItems(idealPrice, priceReached, emailed, nickName, itemID, userID) values (${idealPrice}, false, false, ${itemNickName}, ${itemId}, ${userId}) returning id', data)
+        return t.one('INSERT INTO watchedItems(idealPrice, priceReached, emailed, nickName, itemID, userID) values (${idealPrice}, false, false, ${itemNickName}, ${itemId}, ${userId})', data)
       })
-      .then(function(id){
+      .then(function(){
         return t.one('INSERT INTO itemHistories(price, checkDate, itemID) values (${currentPrice}, ${createdDate}, ${itemId}) returning id', data)
       })
-      .then(function(data){
-        console.log('successfully added to db ')
-        res.send(data)
+      .then(function(itemHistoryID){
+        res.send(itemHistoryID)
       })
       .catch(function(error){
-        console.log('****error', error)
+        console.log('error adding item into watchedItems or itemHistories', error)
         res.send(error)
       })
     });
-  console.log('end of addItem')
   },
 
   //READ GET ALL ITEMS

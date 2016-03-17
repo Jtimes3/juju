@@ -58,7 +58,7 @@ describe('main page', function() {
       request.get('http://localhost:3000/api/items', function(err, res, body) {
         expect(res.statusCode).toBe(200);
         // the 'request' module stringifies the response so we need to parse it
-        expect(JSON.parse(body)[0].name).toEqual('light');
+        expect(JSON.parse(body)[0].producttitle).toEqual('light');
         done();
       });
     });
@@ -83,4 +83,25 @@ describe('main page', function() {
       });
     });
   });
+  
+  describe('wathcedItem router', function(){
+    it('should return all watched items', function(done){
+      request.get('http://localhost:3000/api/watcheditems', function(err, res, body) {
+        expect(res.statusCode).toBe(200);
+
+        // only checking data that was seeded from mockData.sql
+        expect(JSON.parse(body)[0].idealprice).toEqual('$15.00');
+        expect(JSON.parse(body)[1].settleprice).toEqual('$17.22');
+        done();
+      });
+    });
+
+    it('should return a specific item with specific user Id', function(done){
+      request.get('http://localhost:3000/api/watcheditems/user/1', function(err, res, body) {
+        expect(JSON.parse(body)[0].producttitle).toEqual('light');
+        done();
+      });
+    });
+  });
+  
 });

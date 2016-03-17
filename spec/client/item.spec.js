@@ -35,6 +35,27 @@ describe('Add item factory', function(){
     it('has scrapePriceInfo method', function(){
       expect(typeof Item.scrapePriceInfo).toBe('function');
     });
+
+    it('has checkAbleTosend method', function () {
+      expect(typeof Item.checkAbleTosend).toBe('function');
+    });
+
+    it('checkAbleTosend returns false if any undefined properties on object', function () {
+      var item = {};
+      item.currentPrice;
+      expect(Item.checkAbleTosend(item)).toBe(false);
+    })
+
+    it('checkAbleTosend returns true if currentPrice is a number in string form', function () {
+      var sampleItem = {
+      currentPrice : '76',
+      imageUrl : 'String',
+      productTitle : 'String',
+      userId : 'String'
+      }
+      expect(Item.checkAbleTosend(sampleItem)).toBe(true)
+    })
+
   });
 
   describe('Item Controller', function(){

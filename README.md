@@ -45,7 +45,13 @@ to run tests
 
 ### Back End
 install
-    npm install -g jasmine
+    ```npm install -g jasmine```
+- Create Database for test //  (from command line)
+```
+createdb jujutestdb
+psql juju < server/db/preloadedSchemas/schema.sql
+psql juju < server/db/preloadedSchemas/mockData.sql
+```
 
 # Usage
 stop server

@@ -1,3 +1,4 @@
+require('dotenv').config();
 var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
@@ -8,7 +9,7 @@ var scrapeTools = require('./scraping.js');
 
 require('./config/middleware.js')(app, express);
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT;
 
 app.post('/scrape',scrapeTools.scrape);
 
