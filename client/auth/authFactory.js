@@ -20,9 +20,10 @@ angular.module('authFactory', [])
         method: 'POST',
         url: 'api/users',
         data: data
-        }).then(function successCallback(response) {
+        })
+      .then(function successCallback(response) {
         authFuncs.userId= response.data.id;
-        
+        return response.data.id;
       })
     }
     return !!loggedIn;

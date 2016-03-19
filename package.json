@@ -26,6 +26,7 @@
     "angular": "1.5.0",
     "angular-environment": "1.0.3",
     "angular-ui-router": "0.2.18",
+    "bluebird": "3.3.4",
     "body-parser": "1.15.0",
     "chai": "3.5.0",
     "cheerio": "0.20.0",
@@ -41,10 +42,12 @@
     "karma-mocha-reporter": "2.0.0",
     "morgan": "1.7.0",
     "node-env-file": "0.1.8",
+    "nodemailer": "0.7.1",
     "pg": "4.5.1",
     "pg-promise": "3.3.0",
     "request": "2.69.0",
     "require": "2.4.20",
+    "twilio": "2.9.0",
     "underscore": "1.8.3"
   },
   "devDependencies": {

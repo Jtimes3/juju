@@ -1,21 +1,21 @@
+require('dotenv').config();
 var watched = require('./watchedItemModel.js');
 var pg = require('pg');
 var connectionString;
 
 // handling DB connection for tests
 if(process.env.NODE_ENV === 'test'){
-  connectionString = 'postgres://localhost:5432/jujutestdb';
+  connectionString = process.env.TEST_DATABASE_URL;
 } else if(process.env.NODE_ENV !== 'test') {
-  connectionString = process.env.DATABASE_URL || require('./../../config.js').connectionString;
+  connectionString = process.env.DATABASE_URL;
 }
 
 var pgp = require('pg-promise')(/*options*/)
 var db = pgp(connectionString);
 
 module.exports = {
-  
   addWatchedItem : function (req, res) {
-      var data = {
+    var data = {
       deadline: req.body.deadline,
       idealPrice: req.body.idealPrice,
       settlePrice: req.body.settlePrice,
@@ -54,7 +54,7 @@ module.exports = {
       });
     });
   },
-  
+
   getAllWatchedItems: function (req,res){
     var results = [];
 
@@ -82,7 +82,7 @@ module.exports = {
       });
     });
   },
-  
+
   updateWatchedItem: function (req,res) {
     var results = [];
 
@@ -98,35 +98,35 @@ module.exports = {
       emailed: req.body.emailed,
       itemID: req.body.itemid,
       userID: req.body.userid};
-    // Get a Postgres client from the connection pool
-    pg.connect(connectionString, function(err, client, done) {
-      // Handle connection errors
-      if(err) {
-        done();
-        console.log(err);
-        return res.status(500).send(json({ success: false, data: err}));
-      }
+      // Get a Postgres client from the connection pool
+      pg.connect(connectionString, function(err, client, done) {
+        // Handle connection errors
+        if(err) {
+          done();
+          console.log(err);
+          return res.status(500).send(json({ success: false, data: err}));
+        }
 
-      // SQL Query > Update Data
-      client.query('UPDATE watchedItems SET deadline=($1), idealPrice=($2), settlePrice=($3), priceReached=($4), emailed=($5)  WHERE id=($6)', [data.deadline, data.idealPrice, data.settlePrice, data.priceReached,data.emailed, id]);
+        // SQL Query > Update Data
+        client.query('UPDATE watchedItems SET deadline=($1), idealPrice=($2), settlePrice=($3), priceReached=($4), emailed=($5)  WHERE id=($6)', [data.deadline, data.idealPrice, data.settlePrice, data.priceReached,data.emailed, id]);
 
-      // SQL Query > Select Data
-      var query = client.query('SELECT * FROM watchedItems ORDER BY id ASC');
+        // SQL Query > Select Data
+        var query = client.query('SELECT * FROM watchedItems ORDER BY id ASC');
 
-      // Stream results back one row at a time
-      query.on('row', function(row) {
-        results.push(row);
+        // Stream results back one row at a time
+        query.on('row', function(row) {
+          results.push(row);
+        });
+
+        // After all data is returned, close connection and return results
+        query.on('end', function() {
+          done();
+          return res.json(results);
+        });
       });
 
-      // After all data is returned, close connection and return results
-      query.on('end', function() {
-        done();
-        return res.json(results);
-      });
-    });
-    
   },
-  
+
   deleteWatchedItem: function (req, res) {
     var results = [];
     var id = req.params.watchedItem_id;
@@ -152,11 +152,10 @@ module.exports = {
       });
     });
   },
-  
+
   joinTable: function (req, res){
     var results = [];
     var data = { userId: req.params.user_id } ;
-    console.log(data)
     pg.connect(connectionString, function(err, client, done) {
       var query = client.query('SELECT * FROM items LEFT JOIN watcheditems ON items.id = watchedItems.itemID WHERE userid='+data.userId +'ORDER BY watcheditems.id ASC');
 
@@ -166,12 +165,8 @@ module.exports = {
 
       query.on('end', function() {
         done();
-        console.log(results);
         return res.json(results);
       });
     });
   }
-  
-  
-  
 }

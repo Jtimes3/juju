@@ -67,7 +67,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
 })
 .run(function($rootScope, $state, Auth){
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams){
-    console.log(Auth.isloggedIn());
+    //console.log(Auth.isloggedIn());
     if(!Auth.isloggedIn()  && toState.authenticate){
       event.preventDefault();
       $state.go('login');

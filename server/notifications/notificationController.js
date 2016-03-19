@@ -1,14 +1,14 @@
 //var express = require('express');
 //var router = express.Router();
+require('dotenv').config();
 var pg = require('pg');
-var config = require('./../../config.js');
 var connectionString; // = process.env.DATABASE_URL || config.connectionString;
 
 // handling DB connection for tests
 if(process.env.NODE_ENV === 'test'){
-  connectionString = 'postgres://localhost:5432/jujuTestDB';
+  connectionString = process.env.TEST_DATABASE_URL;
 } else if(process.env.NODE_ENV !== 'test') {
-  connectionString = process.env.DATABASE_URL || config.connectionString;
+  connectionString = process.env.DATABASE_URL;
 }
 
 
@@ -18,9 +18,7 @@ var db = pgp(connectionString);
 
 module.exports = {
   toNotifyGet : function (req, res){
-    console.log('made it into toNotifyGet')
     var results = {email:[], text:[]};
-    console.log('req', req.body)
 
     pg.connect(connectionString, function(err, client, done) {
       if (err) {
@@ -34,7 +32,6 @@ module.exports = {
       var query = client.query('SELECT users.*, items.*, watcheditems.* FROM watcheditems JOIN items ON items.id=watcheditems.itemid JOIN users ON users.id=watcheditems.userid WHERE watcheditems.pricereached=true AND watcheditems.emailed=false;');
       //is it it better to split data up in the query or iterate through once it returns?
       query.on('row', function(row) {
-        console.log('row', row)
         if(row.contactpref==='text'){
           results.text.push(row)
         } else {
@@ -45,7 +42,6 @@ module.exports = {
 
       query.on('end', function() {
         done();
-        console.log('results', results)
         return res.json(results);
       });
     });

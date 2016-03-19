@@ -1,7 +1,8 @@
+require('dotenv').config();
 var express = require('express');
 var router = express.Router();
 var pg = require('pg');
-var connectionString = process.env.DATABASE_URL || require('../../config.js').connectionString;
+var connectionString = process.env.DATABASE_URL;
 
 module.exports = {
   itemHistoryGet : function(req, res){

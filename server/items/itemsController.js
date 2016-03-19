@@ -1,12 +1,13 @@
+require('dotenv').config();
 var Item = require('./itemModel.js');
 var pg = require('pg');
 var connectionString;
 
 // handling DB connection for tests
 if(process.env.NODE_ENV === 'test'){
-  connectionString = 'postgres://localhost:5432/jujutestdb';
+  connectionString = process.env.TEST_DATABASE_URL;
 } else if(process.env.NODE_ENV !== 'test') {
-  connectionString = process.env.DATABASE_URL || require('./../../config.js').connectionString;
+  connectionString = process.env.DATABASE_URL;
 }
 
 var pgp = require('pg-promise')(/*options*/)
@@ -63,8 +64,6 @@ module.exports = {
 
   //READ GET ALL ITEMS
   getAllItems : function (req, res) {
-    console.log('inside #getAllItems in items controller');
-
     var results = [];
 
     // Get a Postgres client from the connection pool
@@ -77,7 +76,7 @@ module.exports = {
       }
 
       // SQL Query > Select Data
-      var query = client.query('SELECT * FROM items ORDER BY id ASC;');
+      var query = client.query('SELECT id, itemurl FROM items ORDER BY id ASC;');
 
       // Stream results back one row at a time
       query.on('row', function(row) {

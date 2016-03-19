@@ -1,7 +1,12 @@
 angular.module('displayItemsController', [])
 .controller('displayItemsCtrl', function ($scope, displayItemsFactory, Auth){
-  console.log('userId from displayItemsCtrl', Auth.userId);
-  displayItemsFactory.getItemData(Auth.userId).then(
+  //console.log('userId from displayItemsCtrl', Auth.userId);
+  Auth.isloggedIn()
+  .then( function successCallback (userId) {
+    return displayItemsFactory.getItemData(userId)
+  }, function errorCallback (err){
+  })
+  .then(
     function successCallback(response){
       console.log(response);
       $scope.itemData = response.data;
