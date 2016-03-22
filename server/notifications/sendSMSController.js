@@ -12,11 +12,11 @@ var client = require('twilio')(process.env.TWILIO_ACCOUNT_SID, process.env.TWILI
 module.exports = {
   sendTextMessage : function (req, res){
     //console.log('sendtextmessage req: ', req);
-    var itemNickname= req.body.nickname || 'oops';
-    var currentPrice = req.body.currentprice || 'oops';
-    var itemUrl = req.body.itemurl || 'oops';
-    var phoneNumber=req.body.phonenumber;
-    var message='Hello from Juju!\nThis is a notification that the item you were watching (' + itemNickname + ') is currently ' + currentPrice + ' which is equal to or less than the price you were interested in paying. \nYou can find the item at \n' +itemUrl +'\n Enjoy!' // The body of the text message
+    var itemNickname= req.nickname || 'oops';
+    var currentPrice = req.currentprice || 'oops';
+    var itemUrl = req.itemurl || 'oops';
+    var phoneNumber=req.phonenumber;
+    var message='Hello from Saja!\nThis is a notification that the item you were watching (' + itemNickname + ') is currently ' + currentPrice + ' which is equal to or less than the price you were interested in paying. \nYou can find the item at \n' +itemUrl +'\n Enjoy!' // The body of the text message
 
     //var client = require('twilio')('AC420b878efbf51bb91fb5260ecef6b3b1', '759b77f8c566b9efdf37f7cd786d3bdc');
     client.sendMessage({
@@ -26,10 +26,10 @@ module.exports = {
     }, function(error, message) {
         // This callback is executed when the request completes
         if (error) {
-            console.error('Sorry.  We couldn\'t send the message',error);
+            console.error('**TextErr', error);
         } else {
-            console.log('Message sent! Message id: '+message.sid);
-            res.send(message);
+            console.log('**TextMessage sent! Message id: '+message.sid);
+            //res.send(message);
         }
     });
   }

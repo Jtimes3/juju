@@ -5,5 +5,5 @@ module.exports = function (router) {
   router.get('/',watchedItemController.getAllWatchedItems);
   router.put('/:watchedItem_id',watchedItemController.updateWatchedItem);
   router.delete('/watchedItem_id',watchedItemController.deleteWatchedItem);
-  router.get('/user/:user_id', watchedItemController.joinTable);
+  router.get('/user/:user_id', watchedItemController.getUserWatchedItems);
 };

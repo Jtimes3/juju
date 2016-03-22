@@ -12,13 +12,13 @@ createdb juju
 - Load Schema (from command line)
 
 ```
-psql juju < server/db/preloadedSchemas/schema.sql
+psql juju < server/db/scripts/schema.sql
 ```
 
 - Load MockDataSet
 
 ```
-psql juju < server/db/preloadedSchemas/mockData.sql
+psql juju < server/db/scripts/mockData.sql
 ```
 
 
@@ -49,8 +49,8 @@ install
 - Create Database for test //  (from command line)
 ```
 createdb jujutestdb
-psql juju < server/db/preloadedSchemas/schema.sql
-psql juju < server/db/preloadedSchemas/mockData.sql
+psql juju < server/db/scripts/schema.sql
+psql juju < server/db/scripts/mockData.sql
 ```
 
 # Usage

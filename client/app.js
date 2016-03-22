@@ -10,7 +10,7 @@ var app = angular.module('juju', [
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider){
-  $urlRouterProvider.otherwise('/login');
+  $urlRouterProvider.otherwise('/landing');
 
   $stateProvider
   .state('items', {
@@ -39,14 +39,14 @@ app.config(function ($stateProvider, $urlRouterProvider){
     controller: 'itemsCtrl',
     authenticate: true
   })
-  .state('login', {
-    url: '/login',
+  .state('landing', {
+    url: '/landing',
     views: {
       'header' : {
         templateUrl: './layout/header.html'
       },
       'body' : {
-        templateUrl:'./auth/views/login.html'
+        templateUrl:'./layout/landing.html'
       }
     },
     controller: 'fbAuthCtrl'

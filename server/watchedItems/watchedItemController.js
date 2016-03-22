@@ -1,15 +1,5 @@
-require('dotenv').config();
-var watched = require('./watchedItemModel.js');
+var connectionString = require('./../db/config/init');
 var pg = require('pg');
-var connectionString;
-
-// handling DB connection for tests
-if(process.env.NODE_ENV === 'test'){
-  connectionString = process.env.TEST_DATABASE_URL;
-} else if(process.env.NODE_ENV !== 'test') {
-  connectionString = process.env.DATABASE_URL;
-}
-
 var pgp = require('pg-promise')(/*options*/)
 var db = pgp(connectionString);
 
@@ -153,7 +143,7 @@ module.exports = {
     });
   },
 
-  joinTable: function (req, res){
+  getUserWatchedItems: function (req, res){
     var results = [];
     var data = { userId: req.params.user_id } ;
     pg.connect(connectionString, function(err, client, done) {

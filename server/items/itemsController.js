@@ -1,19 +1,7 @@
-require('dotenv').config();
-var Item = require('./itemModel.js');
+var connectionString = require('./../db/config/init');
 var pg = require('pg');
-var connectionString;
-
-// handling DB connection for tests
-if(process.env.NODE_ENV === 'test'){
-  connectionString = process.env.TEST_DATABASE_URL;
-} else if(process.env.NODE_ENV !== 'test') {
-  connectionString = process.env.DATABASE_URL;
-}
-
 var pgp = require('pg-promise')(/*options*/)
 var db = pgp(connectionString);
-
-//var connectionString = process.env.DATABASE_URL || 'postgres://Madison:poop@localhost:5432/juju';
 
 module.exports = {
   // CREATE A SINGLE ITEM

@@ -1,4 +1,4 @@
-<div class = "row">
+<!--<div class = "row">
   <div  ng-repeat = "item in itemData">
     <div class = "col-md-4">
       <div id="name"> {{"item nickname " + item.nickname }} </div>
@@ -15,9 +15,54 @@
       </div>
     </div>
     <!--<div>{{item}}</div>-->
-    <hr>
+    <!--<hr>
   </div>
   <div class="col-md-4">
    <a ui-sref="additems">add item</a> 
   </div>
-</div>
+</div>-->-->
+
+    <!-- list of items Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2>Your List</h2>
+                    <hr class="star-primary">
+                </div>
+            </div>
+            <div class="row"  >
+                <div class="col-sm-4 portfolio-item" ng-repeat = "item in itemData" >
+                    <a href="#watchedItem" class="portfolio-link" data-toggle="modal">
+                        <!--<div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>-->
+                        <img ng-src = "{{ item.itemimageurl }}" class="img-responsive" alt="">
+                    </a>
+                    <div id="name"> {{"item nickname " + item.nickname }} </div>
+                    <div> product title = {{item.producttitle}} </div>
+                    <div> item id = {{item.id}}</div>
+                    <div>
+                      <button ng-click="deleteWatched(item.id)"> delete </button>
+                    </div>
+                    <div id="price"> {{"current price " + item.currentprice }} </div>
+                    <div>ideal price : {{item.idealprice}}
+                        <input type = "text" ng-model= "item.idealprice">
+                        <a href="" ng-click="update(item.id, item)">update</a>
+                    </div>     
+                </div>
+                <div class="col-sm-4 portfolio-item">
+                    <a ui-sref="additems" class="portfolio-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        add item
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>

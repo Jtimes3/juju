@@ -1,6 +1,6 @@
 var pg = require('pg');
 var pgp = require('pg-promise')(/*options*/)
-var connectionString = process.env.DATABASE_URL;
+var connectionString = require('./../db/config/init');
 var db = pgp(connectionString);
 
 module.exports = {
@@ -18,31 +18,19 @@ module.exports = {
 
     // Get a Postgres client from the connection pool
     // if user exists in the db it won't create a new user and fetch it's user ID
-    db.task(function(t) {
-      var existingUserId;
+    db.tx(function(t) {
       return t.oneOrNone('SELECT id FROM users WHERE FBuID=${FBuID}', data)
       .then(function(userID){
-        if(userID){
-          existingUserId = userID;
-          return existingUserId;
-        } else {
-
-          // if user doesn't exist in the db a new one will be created
-          return t.one('INSERT INTO users(email, phoneNumber, FBuID, FBname) values(${email}, ${phoneNumber}, ${FBuID}, ${FBname}) returning id', data)
-          .catch( function (err){
-            console.log(err)
-            res.send(err);
-          })
-        }
-      })
-      .catch(function(error){
-        console.log('error', error)
-      })
-      .then(function(userID){
-        existingUserId = userID;
-        res.send(existingUserId);
+        return userID || t.one('INSERT INTO users(email, phoneNumber, FBuID, FBname) values(${email}, ${phoneNumber}, ${FBuID}, ${FBname}) RETURNING id', data)
       });
-    });
+    })
+    .then(function(userID){
+      res.send(userID);
+    })
+    .catch( function (err){
+      console.log(err)
+      res.send(err);
+    })
   },
 
   // CREATE A SINGLE USER

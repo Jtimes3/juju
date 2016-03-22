@@ -2,11 +2,11 @@ describe('routes', function(){
   beforeEach(module('juju'));
 
   var state;
-  describe('login route', function(){
+  describe('landing page route', function(){
     it('has the correct URL', inject(function($state){
       // state object has many more properties we can test
-      state = $state.get('login');
-      expect(state.url).toEqual('/login');
+      state = $state.get('landing');
+      expect(state.url).toEqual('/landing');
     }));
 
     it('renders the correct template', function(){

@@ -39,9 +39,10 @@ CREATE TABLE watchedItems (
   idealPrice MONEY,
   settlePrice MONEY,
   priceReached BOOLEAN,
-  emailed BOOLEAN,
+  contacted BOOLEAN,
   itemID INTEGER,
   userID INTEGER,
+  category VARCHAR(250),
   FOREIGN KEY (itemID) REFERENCES items(id),
   FOREIGN KEY (userID) REFERENCES users(id)
 );
