@@ -6,7 +6,11 @@ var app = angular.module('juju', [
   'itemFactory',
   'juju.item',
   'juju.user',
-  'userFactory'
+  'userFactory',
+  'chart.js',
+  'ui.bootstrap',
+  'infinite-scroll',
+  'ui.bootstrap.tpls'
 ]);
 
 app.config(function ($stateProvider, $urlRouterProvider){
@@ -25,6 +29,11 @@ app.config(function ($stateProvider, $urlRouterProvider){
       }
     },
     authenticate: true
+  })
+  .state('items/aItem', {
+    url: '/yourItems/item',
+    templateUrl : './item/view/itemGraphModal.html',
+    authenticate:true
   })
   .state('additems', {
     url: '/additems',
@@ -46,7 +55,7 @@ app.config(function ($stateProvider, $urlRouterProvider){
         templateUrl: './layout/header.html'
       },
       'body' : {
-        templateUrl:'./layout/landing.html'
+        templateUrl:'./layout/landing.html',
       }
     },
     controller: 'fbAuthCtrl'
@@ -63,6 +72,17 @@ app.config(function ($stateProvider, $urlRouterProvider){
       }
     },
     authenticate: true
+  })
+  .state('about', {
+    url: '/about',
+    views: {
+      'header' : {
+        templateUrl: './layout/header.html'
+      },
+      'body' : {
+        templateUrl: './layout/about.html'
+      }
+    }
   });
 })
 .run(function($rootScope, $state, Auth){

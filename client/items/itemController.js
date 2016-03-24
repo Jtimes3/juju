@@ -9,10 +9,32 @@ angular.module('juju.item', [])
   $scope.item.currentPrice;
   $scope.item.imageUrl;
   $scope.item.productTitle;
-
+  $scope.item.category;
   $scope.loading = false;
   var ableTosend = false;
 
+
+  $scope.addNewCategory=false;
+  Item.getCategories();
+  $scope.item.categories={
+    repeatSelect: 'Add Category',
+    categories: Item.category
+  };
+  if($scope.item.categories.repeatSelect==='Add Category'){
+    $scope.addNewCategory=true;
+  }
+  $scope.checkCategory=function(){
+    if($scope.item.categories.repeatSelect==='Add Category'){
+      $scope.addNewCategory=true;
+      console.log(addNewCategory)
+    } else {
+      $scope.addNewCategory=false;
+    }
+  }
+  $scope.addCategory=function(value){
+    $scope.item.categories.categories.push(value);
+    $scope.item.categories.repeatSelect=value;
+  }
   $scope.$watch('item.URL', _.debounce(function(newValue, oldValue){
     if(newValue){
       Item.scrapePicture(newValue).then(function successCallback(response) {
@@ -50,7 +72,7 @@ angular.module('juju.item', [])
         .then(function successCallback (response) {
           $state.go('items')
         },
-        function errorCallbac(response) {
+        function errorCallback(response) {
         });
       }
     }

@@ -100,35 +100,35 @@ INSERT INTO itemHistories (price, checkDate, itemID) VALUES ('$34.00',  '2016-03
 */
 
 
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'Dancing Guy',          '$250.00', '', 'f',   'f',    2,     1);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'yummy candy',           '$15.00', '', 'f',   'f',    3,     3);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'flagss',                 '$8.00', '', 'f',   'f',    4,     3);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'flag banners',           '$6.00', '', 'f',   'f',    4,     4);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'photo props',           '$10.00', '', 'f',   'f',    5,     4);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'carnival stuff',       '$159.00', '', 'f',   'f',    6,     4);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'carnival kit',         '$140.00', '', 'f',   'f',    6,     5);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'canopy tent',           '$15.00', '', 'f',   'f',    7,     5);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'big top canopy tent',   '$40.00', '', 'f',   'f',    7,     7);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'lotion',                '$15.00', '', 'f',   'f',    9,     7);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'baby kindle',           '$65.00', '', 'f',   'f',    8,     8);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'stila',                 '$15.00', '', 'f',   'f',   10,     8);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'jack black lotion',     '$27.00', '', 'f',   'f',    9,     9);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'bike light',            '$60.00', '', 'f',   'f',    1,     9);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'inflatable dude',      '$200.00', '', 'f',   'f',    2,    10);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'carnival kit',         '$150.00', '', 'f',   'f',    6,    10);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'light',                 '$85.00', '', 't',   'f',    1,     1);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'candy',                 '$22.99', '', 't',   'f',    3,     1);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'Dee Dancer',           '$280.00', '', 't',   'f',    2,     2);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'assorted candy',        '$27.00', '', 't',   'f',    3,     2);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'banner',                '$15.00', '', 't',   'f',    4,     2);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'props',                 '$15.00', '', 't',   'f',    5,     3);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'photo booth toys',      '$10.04', '', 't',   'f',    5,     5);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'carnival kits',        '$175.00', '', 't',   'f',    6,     6);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'big top!',              '$50.00', '', 't',   'f',    7,     6);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'kindle',                '$85.00', '', 't',   'f',    8,     6);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'kindle',                '$80.00', '', 't',   'f',    8,     7);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'manly lotion',          '$35.00', '', 't',   'f',    9,     8);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'lotion',                '$40.00', '', 't',   'f',   10,     9);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, emailed, itemID, userID) VALUES ('2016-04-01', 'flags',                 '$15.00', '', 't',   't',    4,    10);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing Guy',          '$250.00', '', 'f',   'f',    2,     1);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'yummy candy',           '$15.00', '', 'f',   'f',    3,     3);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'flagss',                 '$8.00', '', 'f',   'f',    4,     3);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'flag banners',           '$6.00', '', 'f',   'f',    4,     4);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'photo props',           '$10.00', '', 'f',   'f',    5,     4);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'carnival stuff',       '$159.00', '', 'f',   'f',    6,     4);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'carnival kit',         '$140.00', '', 'f',   'f',    6,     5);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'canopy tent',           '$15.00', '', 'f',   'f',    7,     5);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'big top canopy tent',   '$40.00', '', 'f',   'f',    7,     7);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'lotion',                '$15.00', '', 'f',   'f',    9,     7);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'baby kindle',           '$65.00', '', 'f',   'f',    8,     8);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'stila',                 '$15.00', '', 'f',   'f',   10,     8);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'jack black lotion',     '$27.00', '', 'f',   'f',    9,     9);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'bike light',            '$60.00', '', 'f',   'f',    1,     9);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'inflatable dude',      '$200.00', '', 'f',   'f',    2,    10);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'carnival kit',         '$150.00', '', 'f',   'f',    6,    10);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'light',                 '$85.00', '', 't',   'f',    1,     1);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'candy',                 '$22.99', '', 't',   'f',    3,     1);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dee Dancer',           '$280.00', '', 't',   'f',    2,     2);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'assorted candy',        '$27.00', '', 't',   'f',    3,     2);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'banner',                '$15.00', '', 't',   'f',    4,     2);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'props',                 '$15.00', '', 't',   'f',    5,     3);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'photo booth toys',      '$10.04', '', 't',   'f',    5,     5);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'carnival kits',        '$175.00', '', 't',   'f',    6,     6);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'big top!',              '$50.00', '', 't',   'f',    7,     6);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'kindle',                '$85.00', '', 't',   'f',    8,     6);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'kindle',                '$80.00', '', 't',   'f',    8,     7);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'manly lotion',          '$35.00', '', 't',   'f',    9,     8);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'lotion',                '$40.00', '', 't',   'f',   10,     9);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'flags',                 '$15.00', '', 't',   't',    4,    10);
 
 

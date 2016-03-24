@@ -34,7 +34,14 @@ module.exports = {
         })
         .then(function(responseArray){
           // TODO: add currentDate function
-          var currentDate = ///function
+          var currentDate = function(){
+            var today=new Date();
+            var day = today.getDate();
+            var month = today.getMonth() +1;
+            var year = today.getFullYear();
+            var todaysDate= year + '-' + month + '-' + day;
+            return todaysDate;
+          }
 
           Promise.each(responseArray, function(resp){
             var res = JSON.parse(resp.body);
@@ -42,7 +49,7 @@ module.exports = {
               return t.one("UPDATE items SET currentPrice=${price} WHERE items.itemUrl = ${productUrl} returning id", res)
               .then(function(itemID){
                 res.itemID = itemID.id;
-                res.currentDate = '2016-04-19';
+                res.currentDate = currentDate();
                 return t.one("INSERT INTO itemhistories (itemid, price, checkdate) VALUES (${itemID}, ${price}, ${currentDate}) returning id", res)
               })
               .catch(function(err){

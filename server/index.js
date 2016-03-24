@@ -15,21 +15,19 @@ var port = process.env.PORT;
 
 //cron.watchedItems();
 // TODO: write promise to schedule cron jobs correctly
-function cronJobsGO(){
-  
-}
 
-function blahblah(){
-new CronJob('01 01-60 * * * *' , function () {
-  cron.itemHistory();
-  
-}, 
-    function (){
-      console.log('job stopped.  Could be a cron jrob crash');
-    }, true, 'America/Los_Angeles');
+
+function cronJobsGO(){
+  new CronJob('01 01 10 01-31 * *' , function () {
+    cron.itemHistory();
+
+  },
+  function (){
+    console.log('job stopped.  Could be a cron jrob crash');
+  }, true, 'America/Los_Angeles');
 };
 
-blahblah();
+//cronJobsGO();
 
 app.post('/scrape',scrapeTools.scrape);
 

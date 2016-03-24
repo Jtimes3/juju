@@ -1,72 +1,69 @@
-<!--<div ng-controller='itemsCtrl'> 
-  <h2>add item</h2>
-  <form name='addItemForm' ng-submit='addItem()'>
-    Item to Watch: <br>
-    <input type="text" name='itemNickname' placeholder='itemNickname' ng-model='item.nickName'><br>
-    Item URL: <br>
-    <input type='url' name='itemURL' placeholder='www.itemIWantToWatch.com' ng-model='item.URL'><br>
-    Ideal Price: <br>
-    <input type='text' name=idealPrice placeholder={{item.currentPrice}} ng-model='item.idealPrice'> 
-    <button type='submit' class='button' >Add Item!</button>
-  </form>
-  <h1>{{ item}}</h1>
-  <img ng-src= '{{ item.imageUrl }}'>
-</div>-->
-<!--Add a single item-->
-<section id="contact">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Add item</h2>
-                    <hr class="star-primary">
-                </div>
+  <section id="contact">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2>Add item</h2>
+          <hr class="star-primary">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-8 col-lg-offset-2" ng-controller="itemsCtrl">
+          <form name="addItemForm" ng-submit="addItem(addItemForm.$valid)" id="contactForm" novalidate>
+            <div class="row control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls" ng-class="{'has-error': addItemForm.itemNickname.$invalid}">
+                <label>Item to Watch: </label>
+                <input type="text" name="itemNickname" class="form-control" placeholder="Item Nickname" id="name" ng-model="item.nickName" required ng-minlength="3"/>
+                <span class="help-block" ng-show="addItemForm.itemNickname.$error.required">Required</span>
+                <span class="help-block" ng-show="addItemForm.itemNickname.$error.minlength">Must be atleast 3 characters</span>
+              </div>
             </div>
-            <div class="row">
-                <div class="col-lg-8 col-lg-offset-2" ng-controller="itemsCtrl">
-                    <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
-                    <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
-                    <form name="addItemForm" ng-submit="addItem()" id="contactForm" novalidate>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Item to Watch: </label>
-                                <input type="text" name="itemNickname" class="form-control" placeholder="item Nickname" id="name" ng-model="item.nickName" required data-validation-required-message="Please enter the nick name.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Item URL:</label>
-                                <input type="url" name="itemURL" class="form-control" placeholder="www.itemIWantToWatch.com" id="email" ng-model="item.URL" required data-validation-required-message="Please enter your item's url.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Ideal Price:</label>
-                                <input type="text" name="idealPrice" class="form-control" placeholder="{{item.currentPrice}} price" id="phone" ng-model="item.idealPrice" required data-validation-required-message="Please enter your ideal price.">
-                                <p class="help-block text-danger"></p>
-                            </div>
-                        </div>
-                        <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>Preview image</label>
-                                <div>
-                                <img ng-src="{{ item.imageUrl }}" rows="5">
-                                </div>
-                                <!--<textarea rows="5" class="form-control" placeholder="Message" id="message" required data-validation-required-message="Please enter a message."></textarea>-->
-                                <p class="help-block text-danger"></p>
-                                <!--{{item}}-->
-                            </div>
-                        </div>
-                        <br>
-                        <div id="success"></div>
-                        <div class="row">
-                            <div class="form-group col-xs-12">
-                                <button type="submit" class="btn btn-success btn-lg">Add Item!</button>
-                            </div>
-                        </div>
-                    </form>
+            <div class="row control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls" ng-class="{'has-error': addItemForm.itemURL.$invalid}">
+                <label>Item URL:</label>
+                <input type="url" name="itemURL" class="form-control" placeholder="www.itemIWantToWatch.com" id="email" ng-model="item.URL" required>
+
+                <!-- TODO: Fix url validation below.  May need to add a regex pattern above in the input element-->
+                <!-- <span class="help-block" ng-show="addItemForm.itemURL.$error.url">Not valid url!</span> -->
+                <span class="help-block" ng-show="addItemForm.itemURL.$error.required">Required</span>
+              </div>
+            </div>
+            <div class="row control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls">
+                <label>Ideal Price:</label>
+                <input type="number" name="idealPrice" class="form-control" placeholder="{{item.currentPrice}} Ideal Price" id="phone" ng-model="item.idealPrice" required>
+                <span class="help-block" ng-show="addItemForm.idealPrice.$error.required">Required</span>
+                <span class="help-block" ng-show="addItemForm.idealPrice.$error.number">Not a number!</span>
+              </div>
+            </div>
+            <div class="row control-group">
+              <div class="form-group col-xs-12 floating-label-form-group controls ">
+                <select name="categories" id="categories" ng-model="item.categories.repeatSelect" ng-change="checkCategory()"> 
+                  <option ng-repeat="category in item.categories.categories" value="{{category}}">{{category}}</option>
+                </select>
+                <div ng-show="addNewCategory">
+                  <input class="textbox" placeholder="Add New Category" type="text" ng-model="label" /><br>
+                  <button ng-click="addCategory(label)">add</button>
                 </div>
+                <p class="help-block text-danger"></p>
+              </div>
+              <div class="row control-group">
+                <div class="form-group col-xs-12 floating-label-form-group controls">
+                  <label>Preview image</label>
+                  <div>
+                    <img ng-src="{{ item.imageUrl }}" rows="5">
+                  </div>
+                  <p class="help-block text-danger"></p>
+                </div>
+              </div>
+              <br>
+              <div id="success"></div>
+              <div class="row">
+                <div class="form-group col-xs-12">
+                  <button type="submit" class="btn btn-success btn-lg">Add Item!</button>
+                </div>
+              </div>
+          </form>
             </div>
         </div>
-    </section>
+      </div>
+  </section>

@@ -21,6 +21,11 @@
     <!-- User Profile Section -->
     <section id="contact">
         <div class="container" ng-controller="usersCtrl">
+          <script type="text/ng-template" id="alert.html">
+            <div class="alert" style="background-color:#fa39c3;color:white" role="alert">
+              <div ng-transclude></div>
+            </div>
+          </script>
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Profile</h2>
@@ -32,7 +37,6 @@
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="updateUserForm" ng-submit="updateUser()" id="contactForm" novalidate>
-                      {{userData}}
                         <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>Your name</label>
@@ -43,10 +47,18 @@
                          <div class="row control-group">
                             <div class="form-group col-xs-12 floating-label-form-group controls">
                                 <label>preference</label>
-                                <!--<input type="text" name="preference" class="form-control" placeholder="text/email" ng-model="userData.contactpref" id="message" required data-validation-required-message="Please enter a message.">-->
-                                <input type="radio" name="preference" class="form-control" value="text" ng-model="userData.contactpref" id="message" required data-validation-required-message="Please select your preference.">text
-                                <input type="radio" name="preference" class="form-control" value="email" ng-model="userData.contactpref" id="message" required data-validation-required-message="Please select your preference.">email<br>
-                                <p class="help-block text-danger"></p>
+                                <div class="row">
+                                  <div class="col-lg-3">
+                                    {{userData.contactpref}}
+                                  </div>
+                                  <div class="col-lg-3">
+                                    <input type="radio" name="preference" class="form-control" value="text" ng-model="userData.contactpref" id="message" required data-validation-required-message="Please select your preference.">text
+                                  </div>
+                                  <div class="col-lg-3">  
+                                    <input type="radio" name="preference" class="form-control" value="email" ng-model="userData.contactpref" id="message" required data-validation-required-message="Please select your preference.">email
+                                    <p class="help-block text-danger"></p>
+                                  </div>
+                                </div>                                
                             </div>
                         </div>
                         <div class="row control-group">
@@ -65,6 +77,7 @@
                         </div>
                         <br>
                         <div id="success"></div>
+                         <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
                         <div class="row">
                             <div class="form-group col-xs-12">
                                 <button type="submit" class="btn btn-success btn-lg" ng-click="updateUserInfo(userData.id,userData)" >Update</button>

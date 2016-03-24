@@ -1,6 +1,9 @@
 var connectionString = require('./../db/config/init');
 var pg = require('pg');
 
+var pgp = require('pg-promise')(/*options*/)
+var db = pgp(connectionString);
+
 module.exports = {
   itemHistoryGet : function(req, res){
     var results = [];
@@ -97,6 +100,20 @@ module.exports = {
         return res.json(results);
       });
     });
+  },
+
+  userItemHistoryGet : function (req, res){
+    var userId = req.params.userId  
+    console.log(userId);
+    db.tx(function(t) {
+      return t.manyOrNone('SELECT * FROM watchedItems LEFT JOIN itemHistories ON itemHistories.itemId = watchedItems.itemId WHERE userId=${userId};', {userId:userId})
+    })
+    .then( function (table){
+        res.send(table)
+      })
+      .catch( function (err){
+        console.log('*********err', err);
+        res.send(err)
+      })
   }
 }
-

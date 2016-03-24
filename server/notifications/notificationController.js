@@ -16,7 +16,7 @@ module.exports = {
           data: err});
       }
 
-      var query = client.query('SELECT users.*, items.*, watcheditems.* FROM watcheditems JOIN items ON items.id=watcheditems.itemid JOIN users ON users.id=watcheditems.userid WHERE watcheditems.pricereached=true AND watcheditems.emailed=false;');
+      var query = client.query('SELECT users.*, items.*, watcheditems.* FROM watcheditems JOIN items ON items.id=watcheditems.itemid JOIN users ON users.id=watcheditems.userid WHERE watcheditems.pricereached=true AND watcheditems.contacted=false;');
       query.on('row', function(row) {
         if(row.contactpref==='text'){
           results.text.push(row)
@@ -43,7 +43,7 @@ module.exports = {
           data: err});
       }
       var data = {id: req}
-      var query=client.query('UPDATE watcheditems SET emailed=True WHERE id=$1', [data.id]);
+      var query=client.query('UPDATE watcheditems SET contacted=True WHERE id=$1', [data.id]);
 
        query.on('row', function(row) {
         if(row.contactpref==='text'){

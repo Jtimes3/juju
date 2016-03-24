@@ -19,6 +19,7 @@ module.exports = {
       currentPrice:req.body.currentPrice,
       idealPrice : req.body.idealPrice,
       createdDate : req.body.createdDate,
+      category : req.body.category,
       userId : req.body.userId
     };
     // Get a Postgres client from the connection pool
@@ -35,7 +36,7 @@ module.exports = {
       })
       .then(function(itemID){
         data.itemId=itemID.id
-        return t.one('INSERT INTO watchedItems(idealPrice, priceReached, emailed, nickName, itemID, userID) values (${idealPrice}, false, false, ${itemNickName}, ${itemId}, ${userId})', data)
+        return t.one('INSERT INTO watchedItems(idealPrice, priceReached, contacted, nickName, itemID, category, userID) values (${idealPrice}, false, false, ${itemNickName}, ${itemId}, ${category}, ${userId})', data)
       })
       .then(function(){
         return t.one('INSERT INTO itemHistories(price, checkDate, itemID) values (${currentPrice}, ${createdDate}, ${itemId}) returning id', data)
@@ -79,6 +80,23 @@ module.exports = {
 
     });
 
+  },
+
+  getUserCategories: function (req, res){
+    var results=[]
+    var data={userId: req.params.user_id};
+    pg.connect(connectionString, function(err, client, done){
+      var query = client.query('SELECT category FROM watchedItems WHERE userid=' +data.userId);
+
+      query.on('row', function(row){
+        results.push(row);
+      });
+
+      query.on('end', function(){
+        done();
+        return res.json(results);
+      })
+    })
   },
 
   //UPDATE A SINGLE ITEM

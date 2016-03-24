@@ -1,68 +1,156 @@
-<!--<div class = "row">
-  <div  ng-repeat = "item in itemData">
-    <div class = "col-md-4">
-      <div id="name"> {{"item nickname " + item.nickname }} </div>
-      <div> product title = {{item.producttitle}} </div>
-      <div> item id = {{item.id}}</div>
-      <div>
-        <button ng-click="deleteWatched(item.id)"> delete </button>
-      </div>
-      <img ng-src = "{{ item.itemimageurl }}">
-      <div id="price"> {{"current price " + item.currentprice }} </div>
-      <div>ideal price : {{item.idealprice}}
-          <input type = "text" ng-model= "item.idealprice">
-          <a href="" ng-click="update(item.id, item)">update</a>
+<section id="portfolio">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2>Your List</h2>
+        <h2>Search<input type ='text' ng-model=search></h2>
+        <hr class="star-primary">
       </div>
     </div>
-    <!--<div>{{item}}</div>-->
-    <!--<hr>
-  </div>
-  <div class="col-md-4">
-   <a ui-sref="additems">add item</a> 
-  </div>
-</div>-->-->
 
-    <!-- list of items Section -->
-    <section id="portfolio">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2>Your List</h2>
-                    <hr class="star-primary">
+   
+    
+    <div class="row text-center">
+      <div infinite-scroll="loadMoreItems()" infinite-scroll-distance='1'>
+        <div class="col-md-4 col-sm-6 hero-feature" ng-repeat = "item in itemData | filter: search track by $index" >
+            <div class="thumbnail">
+                
+                <!--test-->
+                <li class="img-list">
+                <div class="square-box" style="background-image: url('{{ item.itemimageurl }}');" ng-click="open(item.nickname)" data-toggle="modal" data-target="#myModal">
+                  <span class="text-content">
+                    <span> {{item.producttitle}}  </span>
+                  </span>
                 </div>
-            </div>
-            <div class="row"  >
-                <div class="col-sm-4 portfolio-item" ng-repeat = "item in itemData" >
-                    <a href="#watchedItem" class="portfolio-link" data-toggle="modal">
-                        <!--<div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>-->
-                        <img ng-src = "{{ item.itemimageurl }}" class="img-responsive" alt="">
-                    </a>
-                    <div id="name"> {{"item nickname " + item.nickname }} </div>
-                    <div> product title = {{item.producttitle}} </div>
-                    <div> item id = {{item.id}}</div>
-                    <div>
-                      <button ng-click="deleteWatched(item.id)"> delete </button>
+                </li>
+                
+                
+                <script type="text/ng-template" id="myModalContent.html">
+                  <div class="modal-header">
+                    <h3 class="modal-title">{{ itemid + " price over time" }}!</h3>
+                  </div>
+                  <div class="modal-body">
+                    <h1 ng-show="errMessage" class ="ng-hide"> Not Enough Data </h1>
+                    <canvas  id="line" class="chart chart-line" chart-data="itemHistoryData[itemid].priceGraph[0][1]"
+                    chart-labels="itemHistoryData[itemid].priceGraph[0][0]" chart-legend="true" chart-series="series"
+                    chart-click="onClick" >
+                    </canvas>
+                  </div>
+                  <div class="modal-footer">
+                    <h6 class="modal-Buy-Rec">Purchase Recommendation: {{ itemHistoryData[itemid].priceGraph[0][2] }}</h6>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                  </div>
+                </script>
+                <div class="caption">
+                    
+                    <div class ="row">
+                      <div class="col-md-5">
+                         
+                     <h3>{{item.nickname }} </h3>
+                      </div>
+                      <div class="col-md-5">
+                       <h3 class ="pull-right">{{item.currentprice }}</h3>
+                      </div>
+                      <div class="col-md-2">
+                      </div>
                     </div>
-                    <div id="price"> {{"current price " + item.currentprice }} </div>
-                    <div>ideal price : {{item.idealprice}}
-                        <input type = "text" ng-model= "item.idealprice">
-                        <a href="" ng-click="update(item.id, item)">update</a>
-                    </div>     
-                </div>
-                <div class="col-sm-4 portfolio-item">
-                    <a ui-sref="additems" class="portfolio-link" data-toggle="modal">
-                        <div class="caption">
-                            <div class="caption-content">
-                                <i class="fa fa-search-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        add item
-                    </a>
+                    
+                     <div class ="row">
+                      <div class="col-md-5">
+                         
+                     <p>Ideal price: </p>
+                      </div>
+                      <div class="col-md-5">
+                       <p ng-show="!wantEdit"class ="pull-right">{{item.idealprice}}</p>
+                       <input ng-show="wantEdit" type = "text" ng-model= "item.idealprice">
+                      </div>
+                      <div class="col-md-2">
+                        <a  ng-show="!wantEdit" ng-click="wantEdit = !wantEdit">edit</a>
+                        <a   ng-show="wantEdit" ng-click="update(item.id, item); wantEdit = !wantEdit">save</a>
+                      </div>
+                    </div>
+                    <p>
+                        <a href="{{item.itemurl}}" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        <!--<a class="btn btn-default" ng-click="deleteWatched(item.id)">Delete</a>-->
+                        <a class="fa fa-trash btn"  ng-click="deleteWatched(item.id)">Delete</a>
+                    </p>
                 </div>
             </div>
         </div>
-    </section>
+        <!--dummy-->
+        <div class="col-md-4 col-sm-6 hero-feature" >
+            <div class="thumbnail">
+                
+                <!--test-->
+                <li class="img-list" ui-sref="additems" >
+                <div class="square-box" style="background-image: url('{{ item.itemimageurl }}');" ng-click="open(item.nickname)" data-toggle="modal" data-target="#myModal">
+                  <span class="text-content">
+                    <span> Add item </span>
+                  </span>
+                </div>
+                </li>
+                
+                
+                <script type="text/ng-template" id="myModalContent.html">
+                  <div class="modal-header">
+                    <h3 class="modal-title">{{ itemid + " price over time" }}!</h3>
+                  </div>
+                  <div class="modal-body">
+                    <h1 ng-show="errMessage" class ="ng-hide"> Not Enough Data </h1>
+                    <canvas  id="line" class="chart chart-line" chart-data="itemHistoryData[itemid].priceGraph[0][1]"
+                    chart-labels="itemHistoryData[itemid].priceGraph[0][0]" chart-legend="true" chart-series="series"
+                    chart-click="onClick" >
+                    </canvas>
+                  </div>
+                  <div class="modal-footer">
+                    <h6 class="modal-Buy-Rec">Purchase Recommendation: {{ itemHistoryData[itemid].priceGraph[0][2] }}</h6>
+                    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+                    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+                  </div>
+                </script>
+                <div class="caption">
+                    
+                    <div class ="row">
+                      <div class="col-md-5">
+                         
+                     <h3>{{item.nickname }} </h3>
+                      </div>
+                      <div class="col-md-5">
+                       <h3 class ="pull-right">{{item.currentprice }}</h3>
+                      </div>
+                      <div class="col-md-2">
+                      </div>
+                    </div>
+                    
+                     <div class ="row">
+                      <div class="col-md-5">
+                         
+                     <p>Ideal price: </p>
+                      </div>
+                      <div class="col-md-5">
+                       <p ng-show="!wantEdit"class ="pull-right">{{item.idealprice}}</p>
+                       <input ng-show="wantEdit" type = "text" ng-model= "item.idealprice">
+                      </div>
+                      <div class="col-md-2">
+                        <a  ng-show="!wantEdit" ng-click="wantEdit = !wantEdit">edit</a>
+                        <a   ng-show="wantEdit" ng-click="update(item.id, item); wantEdit = !wantEdit">save</a>
+                      </div>
+                    </div>
+                    <p>
+                        <a href="{{item.itemurl}}" class="btn btn-primary">Buy Now!</a> <a href="#" class="btn btn-default">More Info</a>
+                        <!--<a class="btn btn-default" ng-click="deleteWatched(item.id)">Delete</a>-->
+                        <a class="fa fa-trash btn"  ng-click="deleteWatched(item.id)">Delete</a>
+                    </p>
+                </div>
+            </div>
+           </div>
+        
+      </div>
+    </div>
+    
+   
+    
+  </div>
+</section>
+</div>
