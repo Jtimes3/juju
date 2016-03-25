@@ -1,9 +1,14 @@
 angular.module('juju.item', [])
 .controller('itemsCtrl', function($scope, Item, Auth, $state, displayItemsFactory){
   $scope.item={};
-  //$scope.item.id;
   Auth.isloggedIn()
-  $scope.item.userId = Auth.userId;
+  .then( function successCallback (userId) {
+     $scope.item.userId =  userId;
+  })
+ 
+  
+  
+  console.log('userId from itemId')  
 
   $scope.item.createdDate=new Date();
   $scope.item.currentPrice;
@@ -15,7 +20,7 @@ angular.module('juju.item', [])
 
 
   $scope.addNewCategory=false;
-  Item.getCategories();
+  //Item.getCategories();
   $scope.item.categories={
     repeatSelect: 'Add Category',
     categories: Item.category
@@ -36,6 +41,7 @@ angular.module('juju.item', [])
     $scope.item.categories.repeatSelect=value;
   }
   $scope.$watch('item.URL', _.debounce(function(newValue, oldValue){
+    console.log('scrap running')
     if(newValue){
       Item.scrapePicture(newValue).then(function successCallback(response) {
         if(response.data === 'not a site'){
@@ -61,6 +67,7 @@ angular.module('juju.item', [])
         if(Item.checkAbleTosend($scope.item)) {
           Item.addItemToDB($scope.item)
           .then(function successCallback(response) {
+            
             $state.go('items');
           }, function errorCallback(response){
           })

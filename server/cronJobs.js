@@ -56,74 +56,26 @@ module.exports = {
                 console.log(err);
               })
               .then(function(id){
-                console.log('our id: ', id);
                 return;
               })
             });
           })
           return responseArray;
         }).then(function(nothing){
-          console.log('****nothing?', nothing.body);
-          console.log('***in watcheditems');
+          console.log('updating db')
           db.task(function(t){
             return t.many("UPDATE watcheditems SET pricereached=true FROM items WHERE watcheditems.itemid=items.id AND items.currentprice <= watcheditems.idealprice;");
           })
-          console.log('ran cron job: watchedItems');
-          return 'I hate computers';
+          return;
 
-        }).then(function(words){
-          console.log('words? ', words)
-          console.log('in sendnotification');
-          request.getAsync('http://localhost:3000/api/notifications')
-          .then(function(res){
-          // res will be an object containing 2 arrays
-          var updateWatchedArr=[];
-          var toNotify = JSON.parse(res.body);
-          var toTextArr = toNotify.text;
-          var toEmailArr = toNotify.email;
-          for(var i=0; i<toTextArr.length; i++){
-            var currWatchedID=toTextArr[i].id
-            updateWatchedArr.push(currWatchedID)
-          }
-          for(var i=0; i<toEmailArr.length; i++){
-            var currWatchedID=toEmailArr[i].id
-            updateWatchedArr.push(currWatchedID)
-          }
-
-          Promise.each(toEmailArr, function(toEmail){
-            sendEmailController.sendEmailMessage(toEmail);
-          });
-
-          Promise.each(toTextArr, function(toText){
-            sendSMSController.sendTextMessage(toText);
-          });
-          console.log('update watched in sendnotification', updateWatchedArr)
-
-        return updateWatchedArr;
         })
-        .then(function(updateWatchedArr){
-          console.log('updating watchedArr:', updateWatchedArr)
-          Promise.each(updateWatchedArr, function(item){
-            notificationController.toNotifyUpdate(item)
-          });
 
-      })
-        })
       })
       .catch(function(e){
         console.log('error', e);
       })
   },
 
-  watchedItems : function() {
-    console.log('in watcheditems');
-      db.task(function(t){
-        return t.many("UPDATE watcheditems SET pricereached=true FROM items WHERE watcheditems.itemid=items.id AND items.currentprice <= watcheditems.idealprice;");
-      })
-      console.log('ran cron job: watchedItems');
-      return 'I hate computers';
-    
-  },
 
   sendNotifications : function() {
     console.log('in sendnotification');

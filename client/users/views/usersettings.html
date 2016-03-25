@@ -37,16 +37,23 @@
                     <!-- To configure the contact form email address, go to mail/contact_me.php and update the email address in the PHP file on line 19. -->
                     <!-- The form should work on most web servers, but if the form is not working you may need to configure your web server differently. -->
                     <form name="updateUserForm" ng-submit="updateUser()" id="contactForm" novalidate>
+                      
+                      <!--input box for user name-->
                         <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <div class="form-group col-xs-12">
+                              <div class="form-group has-success has-feedback">
                                 <label>Your name</label>
-                                <input type="text" name="fbname" class="form-control" placeholder="userData.fbname" ng-model="userData.fbname" id="name" required data-validation-required-message="Please enter your name.">
+                                <input type="text" name="fbname" class="form-control"  id="inputSuccess2" placeholder="userData.fbname" aria-describedby="inputSuccess2Status" ng-model="userData.fbname" required data-validation-required-message="Please enter your name.">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputSuccess2Status" class="sr-only">(success)</span>
                                 <p class="help-block text-danger"></p>
-                            </div>
+                              </div>
+                           </div>
                         </div>
+                        <!--radio button for preference-->
                          <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
-                                <label>preference</label>
+                            <div class="form-group col-xs-12">
+                                <label>Preference</label>
                                 <div class="row">
                                   <div class="col-lg-3">
                                     {{userData.contactpref}}
@@ -61,18 +68,30 @@
                                 </div>                                
                             </div>
                         </div>
+                        <!--input box for email-->
                         <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <div class="form-group col-xs-12">
+                              <div class="form-group has-success has-feedback">
                                 <label>Email Address</label>
-                                <input type="email" name="email" class="form-control" placeholder="Email Address" ng-model="userData.email" id="email" required data-validation-required-message="Please enter your email address.">
+                                <input type="email" name="email" class="form-control" placeholder="Email Address" aria-describedby="inputSuccess2Status" ng-model="userData.email" id="inputSuccess2"  required data-validation-required-message="Please enter your email address.">
+                                 <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputSuccess2Status" class="sr-only">(success)</span>
                                 <p class="help-block text-danger"></p>
                             </div>
+                          </div>
                         </div>
+                        <!--input box for phonenumber-->
                         <div class="row control-group">
-                            <div class="form-group col-xs-12 floating-label-form-group controls">
+                            <div class="form-group col-xs-12">
+                              <div class="form-group has-success has-feedback">
                                 <label>Phone Number</label>
-                                <input type="tel" name="phonenumber" class="form-control" placeholder="Phone Number" ng-model="userData.phonenumber" id="phone" required data-validation-required-message="Please enter your phone number.">
-                                <p class="help-block text-danger"></p>
+                                <input type="tel" name="phonenumber" class="form-control" 
+                                id="inputSuccess2" 
+                                aria-describedby="inputSuccess2Status" 
+                                placeholder="Phone Number" ng-model="userData.phonenumber" id="phone" required data-validation-required-message="Please enter your phone number.">
+                                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+                <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                              </div>
                             </div>
                         </div>
                         <br>

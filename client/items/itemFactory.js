@@ -1,7 +1,12 @@
 angular.module('itemFactory', [])
 .factory('Item', function(Auth, $http){
   var addItemFuncs ={};
-  var userId = Auth.userId;
+  Auth.isloggedIn()
+  .then( function successCallback (userId) {
+    addItemFuncs.userId = userId
+  })
+  
+
   //pull in user info from the auth factory
   addItemFuncs.addItemToDB =function (itemInfo){
     data={
@@ -13,7 +18,7 @@ angular.module('itemFactory', [])
       idealPrice : itemInfo.idealPrice,
       createdDate : itemInfo.createdDate.toDateString(),
       category : itemInfo.categories.repeatSelect,
-      userId : userId
+      userId : itemInfo.userId
     };
 
     return $http({
@@ -23,30 +28,30 @@ angular.module('itemFactory', [])
     });
   },
   addItemFuncs.category=['Add Category']
-  addItemFuncs.getCategories = function(){
-    return $http({
-      method : 'GET',
-      url: 'api/items/categories/'+userId
-    }).then(function(response){
-      for(var i=0; i<response.data.length; i++){
-        var currCat=response.data[i].category;
-        var inIt=false;
-        if(currCat==='null'){
-          inIt=true;
-        }
-        for(var j=0; j<addItemFuncs.category.length; j++){
-          if(currCat===addItemFuncs.category[j]){
-            inIt=true;
-            break;
-          }
-        }
-        if(!inIt){
-        addItemFuncs.category.push(currCat)
-        }
-      }
-      console.log('categories', addItemFuncs.category)
-    })
-  },
+  // addItemFuncs.getCategories = function(){
+  //   return $http({
+  //     method : 'GET',
+  //     url: 'api/items/categories/'+userId
+  //   }).then(function(response){
+  //     for(var i=0; i<response.data.length; i++){
+  //       var currCat=response.data[i].category;
+  //       var inIt=false;
+  //       if(currCat==='null'){
+  //         inIt=true;
+  //       }
+  //       for(var j=0; j<addItemFuncs.category.length; j++){
+  //         if(currCat===addItemFuncs.category[j]){
+  //           inIt=true;
+  //           break;
+  //         }
+  //       }
+  //       if(!inIt){
+  //       addItemFuncs.category.push(currCat)
+  //       }
+  //     }
+  //     console.log('categories', addItemFuncs.category)
+  //   })
+  // },
   addItemFuncs.scrapePriceInfo = function(itemInfo){
     data = {
       url : itemInfo.URL
@@ -114,6 +119,7 @@ angular.module('itemFactory', [])
   }
 
   displayItemsFactoryFuncts.deleteData = function(watchedId){
+
     return $http({
       method : 'DELETE',
       url: '/api/watchedItems/'+watchedId
@@ -193,7 +199,7 @@ angular.module('itemFactory', [])
   for(var i=0; i< itemData.length;i++){
     //make dateString
     date = new Date(itemData[i].checkdate);
-    dateStr = date.getMonth() + '/' + date.getDate();
+    dateStr = date.getMonth()+1 + '/' + date.getDate();
     datesArray.push(dateStr);
     
     //arrange price data

@@ -1,6 +1,6 @@
 angular.module('facebook', [])
 
-.controller('fbAuthCtrl', function ($scope, Auth){
+.controller('fbAuthCtrl', function ($scope, Auth , $window){
   $scope.facebookLogin = function () {
     var ref = new Firebase('https://jtimes3.firebaseio.com');
     ref.authWithOAuthPopup('facebook', function(error, authData) {
@@ -16,5 +16,7 @@ angular.module('facebook', [])
     console.log('in facebookLogOut()');
     Auth.logOut();
   };
+
+  $scope.loggedIn = !!(JSON.parse($window.localStorage.getItem('firebase:session::jtimes3')))
 });
 

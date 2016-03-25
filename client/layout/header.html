@@ -12,28 +12,29 @@
       <a class="navbar-brand" href="#page-top">Saja</a>
     </div>
 
+
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" ng-controller="fbAuthCtrl">
       <ul class="nav navbar-nav navbar-right">
         <li class="hidden">
           <a href="#page-top"></a>
         </li>
-        <li class="page-scroll">
+        <li class="page-scroll" ng-hide='!loggedIn' class ='ng-hide'>
           <a ui-sref="items">item lists</a>
         </li>
-        <li class="page-scroll">
+        <li class="page-scroll" ng-hide='!loggedIn' class ='ng-hide'>
           <a ui-sref="additems">additems</a>
         </li>
-        <li class="page-scroll">
+        <li class="page-scroll" ng-hide='!loggedIn' class ='ng-hide'>
           <a ui-sref="usersettings">user settings</a>
         </li>
         <li class="page-scroll">
           <a ui-sref="about">about</a>
         </li>
-        <li class="page-scroll">
+        <li class="page-scroll" ng-hide='!loggedIn' class ='ng-hide'>
           <a ng-click = "facebookLogOut()">Logout</a>
         </li>
-        <li class="page-scroll">
+        <li class="page-scroll" ng-hide='loggedIn' class ='ng-hide'>
           <a ng-click = "facebookLogin()">Login</a>
         </li>
       </ul>

@@ -14,8 +14,8 @@ DROP TABLE IF EXISTS items CASCADE;
 CREATE TABLE items (
   id SERIAL PRIMARY KEY,
   productTitle VARCHAR(255),
-  itemUrl VARCHAR(255) UNIQUE,
-  itemImageUrl VARCHAR(255),
+  itemUrl VARCHAR(500) UNIQUE,
+  itemImageUrl VARCHAR(500),
   currentPrice MONEY
 );
 
@@ -35,7 +35,7 @@ DROP TABLE IF EXISTS watchedItems CASCADE;
 CREATE TABLE watchedItems (
   id SERIAL PRIMARY KEY,
   deadline DATE,
-  nickName VARCHAR(100),
+  nickName VARCHAR(8),
   idealPrice MONEY,
   settlePrice MONEY,
   priceReached BOOLEAN,

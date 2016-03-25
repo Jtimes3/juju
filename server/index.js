@@ -17,9 +17,20 @@ var port = process.env.PORT;
 // TODO: write promise to schedule cron jobs correctly
 
 
-function cronJobsGO(){
-  new CronJob('01 01 10 01-31 * *' , function () {
+function cronItemHistory(){
+  new CronJob('01 01 02 01-31 * *' , function () {
     cron.itemHistory();
+
+  },
+  function (){
+    console.log('job stopped.  Could be a cron job crash');
+  }, true, 'America/Los_Angeles');
+};
+
+
+function cronUserNotify(){
+  new CronJob('01 01 10 01-31 * *' , function () {
+    cron.sendNotifications();
 
   },
   function (){
@@ -27,7 +38,8 @@ function cronJobsGO(){
   }, true, 'America/Los_Angeles');
 };
 
-//cronJobsGO();
+cronItemHistory();
+cronUserNotify();
 
 app.post('/scrape',scrapeTools.scrape);
 

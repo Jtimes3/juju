@@ -36,7 +36,7 @@ angular.module('authFactory', [])
     $window.localStorage.removeItem('firebase:host:jtimes3.firebaseio.com');
     $window.localStorage.removeItem('firebase:session::jtimes3');
     loggedIn=$window.localStorage.getItem('firebase:session::jtimes3');
-    $state.go('login');
+    $state.go('landing');
     return $window.localStorage.removeItem('firebase:session::jtimes3');  
   };
 

@@ -89,7 +89,15 @@ module.exports = {
       contacted: req.body.contacted,
       itemID: req.body.itemid,
       category: req.body.category,
-      userID: req.body.userid};
+      currentPrice: req.body.currentprice,
+      userID: req.body.userid
+    };
+
+    var curPrice=Number(data.currentPrice.slice(1))
+    var idePrice=Number(data.idealPrice.slice(1))
+    if(curPrice<=idePrice){
+      data.priceReached=true;
+      };
       // Get a Postgres client from the connection pool
       pg.connect(connectionString, function(err, client, done) {
         // Handle connection errors
@@ -147,16 +155,24 @@ module.exports = {
 
   getUserWatchedItems: function (req, res){
     var results = [];
+    var priceReachedArray=[];
+    var priceNotReachedArray=[];
     var data = { userId: req.params.user_id } ;
     pg.connect(connectionString, function(err, client, done) {
       var query = client.query('SELECT * FROM items LEFT JOIN watcheditems ON items.id = watchedItems.itemID WHERE userid='+data.userId +'ORDER BY watcheditems.id ASC');
 
       query.on('row', function(row){
-        results.push(row);
+        if (row.pricereached===true){
+          priceReachedArray.push(row)
+        } else {
+          priceNotReachedArray.push(row)
+        }
       });
 
       query.on('end', function() {
         done();
+        results.push(priceReachedArray);
+        results.push(priceNotReachedArray)
         return res.json(results);
       });
     });
