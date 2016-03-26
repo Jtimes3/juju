@@ -1,10 +1,6 @@
-/*#check{
-border: 1px solid red;
-}*/
 
 #check div{
   /*border: 1px solid red;*/
-  /*overflow: hidden;*/
   margin-bottom: 10px;
 }
 
@@ -87,13 +83,6 @@ span.text-content {
   padding:0;
 }
 #focusedInput{
-  /*border-color: #ccc; 
-  border-color: rgba(82,168,236,.8); 
-  outline: 0;
-  outline: thin dotted\9;
-  -webkit-box-shadow: 0 0 8px rgba(82,168,236,.6); 
-  box-shadow: 0 0 8px rgba(82,168,236,.6);
-   */
 border-color: #ccc; 
 border-color: rgba(60,118,61,.8); 
 outline: 0;
@@ -113,7 +102,7 @@ background: rgba(60,118,61,.2);
   color: #18bc9c;
 }
 
-#theme {
+.light-blue-background {
   background-color: #18bc9c;
   border-color: #18bc9c
 }
@@ -121,3 +110,24 @@ background: rgba(60,118,61,.2);
 .retail-logo {
   padding:15px;
 }
+
+.video{		
+  width:560px;		
+  height:315px;		
+  background-color:black;		
+  margin-right: auto;		
+  margin-left: auto;		
+}		
+		
+.video > span.text-content {		
+  background: rgba(0,0,0,0.5);		
+  color: white;		
+  cursor: pointer;		
+  display: table;		
+  padding-top: 25%;		
+  padding-bottom: 25%;		
+  left: 0;		
+  position: absolute;		
+  top: 0;		
+  width: 100%;		
+  opacity: 0;

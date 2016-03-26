@@ -16,8 +16,8 @@
               <div class="form-group has-success has-feedback">
                 <label > Item Name </label>
                 <input type="text" name="itemNickname" placeholder="Enter the nick name for your item ie) My shoes" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status" ng-model="item.nickName" required ng-minlength="3" ng-maxlength="8"/>
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.itemNickname.$error.required || addItemForm.itemNickname.$error.minlength || addItemForm.itemNickname.$error.maxlength"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.itemNickname.$error.required || addItemForm.itemNickname.$error.minlength || addItemForm.itemNickname.$error.maxlength"></span>
                 <span class="help-block" ng-show="addItemForm.itemNickname.$error.required">Required</span>
                 <span class="help-block" ng-show="addItemForm.itemNickname.$error.minlength">Must be more than 2 characters</span>
                 <span class="help-block" ng-show="addItemForm.itemNickname.$error.maxlength">Must be less than 9 characters</span>
@@ -32,9 +32,8 @@
                 <label>Item URL:</label>
                 <input type="text" name="itemURL" class="form-control" placeholder="Enter the website address. ie) www.amazon.com" id="inputSuccess2" aria-describedby="inputSuccess2Status" ng-model="item.URL"
                                                                                                                                                                                              required ng-pattern="/(ae|crateandbarrel|disneystore|costco|neimanmarcus|barnesandnoble|target|amazon|nordstrom).com/">
-
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                 <span class="glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.itemURL.$error.required || addItemForm.itemURL.$error.pattern"></span>
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.itemURL.$error.required || addItemForm.itemURL.$error.pattern"></span>
                 <span class="help-block" ng-show="addItemForm.itemURL.$error.required">Required</span>
                 <span class="help-block" ng-show="addItemForm.itemURL.$error.pattern">Not a valid URL</span>
               </div>
@@ -64,10 +63,8 @@
               <div class="form-group has-success has-feedback">
                 <label>Ideal Price:</label>
                 <input type="number" name="idealPrice" class="form-control" placeholder="Tell us your ideal price! The current price is : {{item.currentPrice}}" id="inputSuccess2" aria-describedby="inputSuccess2Status"  ng-model="item.idealPrice" required>
-
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputSuccess2Status" class="sr-only">(success)</span>
-
+                <span class="glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.idealPrice.$error.required || addItemForm.idealPrice.$error.number"></span> 
+                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.idealPrice.$error.required || addItemForm.idealPrice.$error.number"></span>
                 <span class="help-block" ng-show="addItemForm.idealPrice.$error.required">Required</span>
                 <span class="help-block" ng-show="addItemForm.idealPrice.$error.number">Not a number!</span>
               </div>
@@ -87,8 +84,9 @@
           <div id="success"></div>
           <div class="row">
             <div class="form-group col-xs-12">
-              <button type="submit" class="btn btn-round btn-success btn-lg" id="theme">
-                <span class="fa fa-plus"> Add Item</span>
+              <button type="submit" class="btn btn-round btn-success btn-lg light-blue-background">
+                <span class="fa fa-plus"></span>
+                <span>Add Item</span>
               </button>
             </div>
           </div>

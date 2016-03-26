@@ -24,7 +24,7 @@
     
     <div class="row text-center">
       <!-- <div infinite-scroll="loadMoreItems()" infinite-scroll-distance='1'> -->
-        <div class="col-md-4 col-sm-6 hero-feature priceReached" ng-repeat = "item in priceReachedData | filter: search track by $index" >
+        <div class="col-md-4 col-sm-6 hero-feature priceReached" ng-repeat = "item in priceReachedData | filter:search track by $index" >
             <div class="thumbnail" id="focusedInput" >
                 
                 <!--test-->
@@ -103,21 +103,7 @@
 
     <div class="row text-center">
       <div infinite-scroll="loadMoreItems()" infinite-scroll-distance="1">
-         <div class="col-md-4 col-sm-6 hero-feature" >
-          <div class="thumbnail">
-                <!--test-->
-            <li class="img-list" ui-sref="additems" >
-                <div class="square-box" style="background-image: url('{{ item.itemimageurl }}');">
-                  <span class="text-content">
-                    <span> Add an item </span>
-                  </span>
-                </div>
-            </li>
-            <div class="caption">
-              <p>Add an item</p>
-            </div>
-          </div>
-        </div>
+        
         <div class="col-md-4 col-sm-6 hero-feature" ng-repeat = "item in priceNotReachedData | filter: search track by $index" >
             <div class="thumbnail">
                 
@@ -196,13 +182,27 @@
             </div>
         </div>
         
-        
+        <div class="col-md-4 col-sm-6 hero-feature" >
+          <div class="thumbnail">
+                <!--test-->
+            <li class="img-list" ui-sref="additems" >
+                <div class="square-box" style="background-image: url('{{ item.itemimageurl }}');">
+                  <span class="text-content">
+                    <span> Add an item </span>
+                  </span>
+                </div>
+            </li>
+            <div class="caption">
+              <p>Add an item</p>
+            </div>
+          </div>
+      </div>
       </div>
       
       
     </div>
 
-
+     
 
 
 

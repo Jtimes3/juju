@@ -34,9 +34,9 @@ angular.module('juju.user', [])
       }
     User.updateOneInfo(userId,userObj).then(
       function success(res) {
-       $scope.addAlert( { type: 'success', msg: 'Well done! You successfully read this important alert message.' } );
+       $scope.addAlert( { type: 'success', msg: 'Your request was sent successfully' } );
       },function error (err) {
-        $scope.addAlert( { type: 'danger', msg: 'Sorry! Try it again' } );
+        $scope.addAlert( { type: 'danger', msg: 'Sorry! The connection is not good. Try it again' } );
       });
   };
 });

@@ -14,6 +14,7 @@ angular.module('facebook', [])
   };
   $scope.facebookLogOut=function(){
     console.log('in facebookLogOut()');
+    $scope.loggedIn = false;
     Auth.logOut();
   };
 

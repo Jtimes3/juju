@@ -21,7 +21,7 @@ angular.module('displayItemsController', [])
       $scope.loadMoreItems = function(){
         var last = $scope.priceNotReachedData.length - 1;
         if(numberofItems > last){
-          for (var i = 0; i <= 3; i++){
+          for (var i = 0; i < 3; i++){
             $scope.priceNotReachedData.push(priceNotReachedArray[last + i]);
           }
         }
