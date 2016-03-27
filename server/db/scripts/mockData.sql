@@ -139,17 +139,17 @@ INSERT INTO itemHistories (price, checkDate, itemID) VALUES ('$34.00',  '2016-03
 /* Everybody gets 'Dancing Guy' and a long item history to play with it's item history */
 
 /* Watched item #1 */
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing Guy',          '$250.00', '', 'f',   'f',    2,     1);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing Guy',          '$250.00', '', 'f',   'f',    2,     2);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing Guy',          '$250.00', '', 'f',   'f',    2,     3);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing Guy',          '$250.00', '', 'f',   'f',    2,     4);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing',          '$250.00', '', 'f',   'f',    2,     1);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing',          '$250.00', '', 'f',   'f',    2,     2);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing',          '$250.00', '', 'f',   'f',    2,     3);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'Dancing',          '$250.00', '', 'f',   'f',    2,     4);
 
 
 /* Watched item #2 */
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'yummy candy',           '$15.00', '', 'f',   'f',    3,     1);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'yummy candy',           '$15.00', '', 'f',   'f',    3,     2);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'yummy candy',           '$15.00', '', 'f',   'f',    3,     3);
-INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'yummy candy',           '$15.00', '', 'f',   'f',    3,     4);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'candy',           '$15.00', '', 'f',   'f',    3,     1);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'candy',           '$15.00', '', 'f',   'f',    3,     2);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'candy',           '$15.00', '', 'f',   'f',    3,     3);
+INSERT INTO watchedItems (deadline, nickName, idealPrice, settlePrice, priceReached, contacted, itemID, userID) VALUES ('2016-04-01', 'candy',           '$15.00', '', 'f',   'f',    3,     4);
 
 
 

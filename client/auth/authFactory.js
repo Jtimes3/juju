@@ -61,14 +61,29 @@ angular.module('authFactory', [])
         url : '/api/users/' + authFuncs.userId
       }).then(function successCallback(req, res) {
         var userData =req.data[0];
-        if(userData.email === null || userData.phonenumber === null){
-          console.log('null');
+        if (userData.contactpref === 'noContact'){
+          console.log('user prefers not to be notified')
+          $state.go('additems');
+        } else if(userData.contactpref === 'email' && userData.email === null){
+          console.log('contact pref email, email =null');
           $state.go('usersettings');
           
-          alert('We need your phone number or email to inform you!');
+          alert('We need your email address to notify you when your items reach their target prices!');
+        } else if (userData.contactpref === 'text' && userData.text === null){
+          console.log('contact pref text, phone number null');
+          $state.go('usersettings');
+          
+          alert('We need your phone number to notify you when your items reach their target prices!');
 
-        }else{
+        } else if (userData.email === null && userData.text === null) {
+          console.log('contact info null')
+           $state.go('usersettings');
+          
+          alert('We need your phone number or email to notify you when your items reach their target prices!');
+        } else {
+          console.log('go to add items')
           $state.go('additems');
+
         } 
       })
     }, function errorCallback (response){

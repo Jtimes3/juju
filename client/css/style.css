@@ -83,12 +83,12 @@ span.text-content {
   padding:0;
 }
 #focusedInput{
-border-color: #ccc; 
-border-color: rgba(60,118,61,.8); 
+border-color: #ccc;
+border-color: rgba(60,118,61,.8);
 outline: 0;
 outline: thin dotted\9;
--webkit-box-shadow: 0 0 8px rgba(60,118,61,.6); 
-box-shadow: 0 0 8px rgba(60,118,61,.6);  
+-webkit-box-shadow: 0 0 8px rgba(60,118,61,.6);
+box-shadow: 0 0 8px rgba(60,118,61,.6);
 border: 3;
 background: rgba(60,118,61,.2);
 
@@ -111,23 +111,70 @@ background: rgba(60,118,61,.2);
   padding:15px;
 }
 
-.video{		
-  width:560px;		
-  height:315px;		
-  background-color:black;		
-  margin-right: auto;		
-  margin-left: auto;		
-}		
-		
-.video > span.text-content {		
-  background: rgba(0,0,0,0.5);		
-  color: white;		
-  cursor: pointer;		
-  display: table;		
-  padding-top: 25%;		
-  padding-bottom: 25%;		
-  left: 0;		
-  position: absolute;		
-  top: 0;		
-  width: 100%;		
+.video{
+  width:560px;
+  height:315px;
+  background-color:black;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.video > span.text-content {
+  background: rgba(0,0,0,0.5);
+  color: white;
+  cursor: pointer;
+  display: table;
+  padding-top: 25%;
+  padding-bottom: 25%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
   opacity: 0;
+}
+
+.white-text {
+  color: white;
+}
+
+.form-instructions {
+  color: grey;
+  font-size: 15px;
+}
+.white-text {
+  color: white;
+}
+
+#load-message-btn {
+  color: white;
+  background: #808080;
+}
+
+.icon-down {
+  padding-top: 30px;
+}
+
+#spinner {
+  width:30px;
+  height:30px;
+}
+
+#add-item-button {
+  font-size: 70px;
+}
+
+#add-item-box {
+  height:300px;
+  background: #808080;
+}
+
+.trash-down {
+  padding-top:20px;
+}
+
+.team a{
+  color: #333;
+}
+ .img-center {
+ 	margin: 0 auto;
+}

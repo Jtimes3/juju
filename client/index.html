@@ -7,6 +7,14 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    
+
+  </head>
+  <body >
+    <div ng-app="juju">
+      <div ui-view="header"></div>
+      <div ui-view="body"></div>
+    </div>
     <!-- FB auth token -->
     <script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
 
@@ -47,13 +55,6 @@
     <!--Fonts-->
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-
-  </head>
-  <body >
-    <div ng-app="juju">
-      <div ui-view="header"></div>
-      <div ui-view="body"></div>
-    </div>
     <!--jQuery plugin-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
   </body>

@@ -1,13 +1,11 @@
 # Saja
-Want to track the price that you are getting? 
 
+A web application that allows you to select an item from a variety of popular retailers and track its price over time. You determine the price you would like to pay and Saja notifies you when the current price of the item is less than or equal to your ideal price.
 [Saja](https://mks-juju.herokuapp.com/)
 
-##Introduction
+#Installation : 
 
-This web application allows a user to keep track the price that she/he wants to get. The user gets the notification via email or text as her preference.
-
-##How to start : Database
+Database
 
 - Create Database (from command line)
 
@@ -21,7 +19,7 @@ createdb juju
 psql juju < server/db/scripts/schema.sql
 ```
 
-- Load MockDataSet
+- Load MockDataSet (from command line)
 
 ```
 psql juju < server/db/scripts/mockData.sql
@@ -36,6 +34,11 @@ Add the following line to that file.  Note - you need to change or
 remove username & password to your system settings.
 ```
 exports.connectionString = 'postgres://username:password@localhost/juju';
+```
+
+-node Modules
+```
+npm install
 ```
 
 ## Test
@@ -96,12 +99,36 @@ For test, we used Karma for client side, and Jasemine for server side.
 
 - We used Twilio API for text notification [Twilio API](https://www.twilio.com/api). 
 
+#Choice of Technologies
 
-## Features
 
-- Users can add a item to keep track the price
+#File Structure
+Files are seperated into three main sections
+Client : holds all files associated with the View, Controllers and Factories as well as styling.
+
+Server : contains the server, middleware, express routing, database schemas and mockdata, scraping functions and cronJob functions.
+
+Specs : contains all the Jasmine / Karma tests which are split up into a client and a server spec folder. 
+
+TODO
+Add file structure representation after we clean up/delete unecessary files
+
+# Features
+
+- Login with Fcebook
+- Add an item from amazon, target, nordstroms etc. (more sites added everyday!) along with a nickname for the 
+
 - Users get a notification from Saja once it hits their ideal price via email or text message
 - Users can log in with their Facebook accout
+
+
+# Future Features
+-Chrome extension
+-Integrate with pinterest, with reverse image look ups
+-Compare item (or similar item) price at other stores
+-Create microservice for cronjobs
+-scrape top 100 commerce websites
+-Allow user to sort items by category
 
 ## Git Workflow
 

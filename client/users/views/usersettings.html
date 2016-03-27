@@ -13,15 +13,27 @@
     </div>
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2">
-        <form name="updateUserForm" ng-submit="updateUser(updateUserForm.$valid)" id="contactForm" novalidate>
+        <form name="updateUserForm"
+          ng-submit="updateUser(updateUserForm.$valid)" id="contactForm"
+          novalidate>
           <!--input box for user name-->
           <div class="row control-group">
-            <div class="form-group col-xs-12" ng-class="{'has-error': updateUserForm.fbname.$invalid'}">
+            <div class="form-group col-xs-12"
+              ng-class="{'has-error': updateUserForm.fbname.$invalid}">
               <div class="form-group has-success has-feedback">
                 <label>Your name</label>
-                <input type="text" name="fbname" class="form-control"  id="inputSuccess2" placeholder="userData.fbname" aria-describedby="inputSuccess2Status" ng-model="userData.fbname" required data-validation-required-message="Please enter your name.">
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                <input type="text" name="fbname"
+                  class="form-control" id="inputSuccess2"
+                  placeholder="user name"
+                  aria-describedby="inputSuccess2Status"
+                  ng-model="userData.fbname"
+                  required>
+                <span class="glyphicon glyphicon-ok form-control-feedback"
+                  ng-hide="updateUserForm.fbname.$error.required">
+                </span>
+                <span class="glyphicon glyphicon-remove form-control-feedback"
+                  ng-show="updateUserForm.fbname.$error.required">
+                </span>
                 <span class="help-block" ng-show="updateUserForm.fbname.$error.required">Required</span>
               </div>
             </div>
@@ -38,36 +50,32 @@
                   <label class="radio-inline">
                     <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="email" ng-model="userData.contactpref" id="message" required data-validation-required-message="Please select your preference."> <span>email</span>
                   </label>
+                  <label class="radio-inline">
+                    <input type="radio" name="inlineRadioOptions" id="inlineRadio3" value="noContact" ng-model="userData.contactpref" id="message" required data-validation-required-message="Please select your preference."> <span> Don't Notify Me </span>
+                  </label>
                 </div>
-                <div class="col-lg-7">
-                  <label> Your preference is </label> {{userData.contactpref}}
-                </div>
+               
               </div>
             </div>
           </div>
           <!--input box for email-->
           <div class="row control-group">
             <div class="form-group col-xs-12">
-              <div class="form-group has-success has-feedback">
+              <div class="form-group">
                 <label>Email Address</label>
                 <input type="email" name="email" class="form-control" placeholder="Email Address" aria-describedby="inputSuccess2Status" ng-model="userData.email" id="inputSuccess2"  required data-validation-required-message="Please enter your email address.">
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputSuccess2Status" class="sr-only">(success)</span>
-                <p class="help-block text-danger"></p>
               </div>
             </div>
           </div>
           <!--input box for phonenumber-->
           <div class="row control-group">
             <div class="form-group col-xs-12">
-              <div class="form-group has-success has-feedback">
+              <div class="form-group">
                 <label>Phone Number</label>
                 <input type="tel" name="phonenumber" class="form-control"
                                                      id="inputSuccess2"
                                                      aria-describedby="inputSuccess2Status"
                                                      placeholder="Phone Number" ng-model="userData.phonenumber" id="phone" required data-validation-required-message="Please enter your phone number.">
-                <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
-                <span id="inputSuccess2Status" class="sr-only">(success)</span>
               </div>
             </div>
           </div>
@@ -76,8 +84,9 @@
           <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
           <div class="row">
             <div class="form-group col-xs-12">
-              <button type="submit" class="btn btn-round btn-success btn-lg light-blue-background" ng-click="updateUserInfo(userData.id,userData)">
-                <span class="fa fa-wrench"> Update</span>
+              <button type="submit" class="btn btn-round btn-lg light-blue-background white-text" ng-click="updateUserInfo(userData.id,userData)">
+                <span class="fa fa-wrench"></span>
+                <span>Update</span>
               </button>
             </div>
           </div>

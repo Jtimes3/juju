@@ -103,8 +103,11 @@ module.exports = {
   },
 
   userItemHistoryGet : function (req, res){
-    var userId = req.params.userId  
+    var userId = req.params.userId; 
     console.log(userId);
+    if(isNaN(Number(userId))){
+      return res.status(400).send("Error tried to send NaN to api/userItemHistoryGet/user/:userId");
+    }
     db.tx(function(t) {
       return t.manyOrNone('SELECT * FROM watchedItems LEFT JOIN itemHistories ON itemHistories.itemId = watchedItems.itemId WHERE userId=${userId};', {userId:userId})
     })

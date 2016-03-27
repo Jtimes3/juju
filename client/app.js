@@ -36,7 +36,11 @@ app.config(function ($stateProvider, $urlRouterProvider){
     authenticate:true
   })
   .state('additems', {
-    url: '/additems',
+    // TODO: change all references to additems -> trackitem
+    // changing additem to trackitem for user experience.  This is only a 
+    // temporary fix and the rest of the routes & associated reference need
+    // to be changed
+    url: '/trackitem',
     views : {
       'body' : {
         templateUrl:'./items/views/additem.html'

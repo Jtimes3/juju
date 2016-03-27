@@ -79,7 +79,9 @@ module.exports = {
 
     // Grab data from the URL parameters
     var id = req.params.watchedItem_id;
-
+    if(id === undefined){
+      return res.status(400).send("Error tried to send NaN to updateWatchedItem");
+    }
     // Grab data from http request
     var data = {
       deadline: req.body.deadline,
@@ -130,7 +132,9 @@ module.exports = {
   deleteWatchedItem: function (req, res) {
     var results = [];
     var id = req.params.watchedItem_id;
-
+    if(isNaN(Number(id))){
+      return res.status(400).send('Error : Tried to send NaN to /api/watcheditems/watchedItem_id')
+    }
     pg.connect(connectionString, function(err, client, done){
       if(err){
         done();
@@ -157,7 +161,12 @@ module.exports = {
     var results = [];
     var priceReachedArray=[];
     var priceNotReachedArray=[];
-    var data = { userId: req.params.user_id } ;
+    var userId = req.params.user_id;
+    if(isNaN(Number(userId))){
+      return res.status(400).send('Error : Tried to send NaN to /api/watcheditems/user/user_id');
+    }
+
+    var data = { userId : userId   } ;
     pg.connect(connectionString, function(err, client, done) {
       var query = client.query('SELECT * FROM items LEFT JOIN watcheditems ON items.id = watchedItems.itemID WHERE userid='+data.userId +'ORDER BY watcheditems.id ASC');
 

@@ -2,43 +2,28 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-12 text-center">
-        <h2>Add item</h2>
+        <h2>Track item</h2>
         <hr class="star-primary">
       </div>
     </div>
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2" ng-controller="itemsCtrl">
-        <form name="addItemForm" ng-submit="addItem(addItemForm.$valid)" id="contactForm" novalidate>
-          <!--input box for a nick name-->
+        <form name="addItemForm"
+          ng-submit="addItem(addItemForm.$valid)" id="contactForm"
+          novalidate>
+          <!--input box for img-->
           <div class="row control-group">
-            <div class="form-group col-xs-12" ng-class="{'has-error': addItemForm.itemNickname.$invalid}">
-
-              <div class="form-group has-success has-feedback">
-                <label > Item Name </label>
-                <input type="text" name="itemNickname" placeholder="Enter the nick name for your item ie) My shoes" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status" ng-model="item.nickName" required ng-minlength="3" ng-maxlength="8"/>
-                <span class="glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.itemNickname.$error.required || addItemForm.itemNickname.$error.minlength || addItemForm.itemNickname.$error.maxlength"></span>
-                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.itemNickname.$error.required || addItemForm.itemNickname.$error.minlength || addItemForm.itemNickname.$error.maxlength"></span>
-                <span class="help-block" ng-show="addItemForm.itemNickname.$error.required">Required</span>
-                <span class="help-block" ng-show="addItemForm.itemNickname.$error.minlength">Must be more than 2 characters</span>
-                <span class="help-block" ng-show="addItemForm.itemNickname.$error.maxlength">Must be less than 9 characters</span>
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Preview image</label>
+              <div>
+                <img ng-src="{{ item.imageUrl }}" rows="5">
               </div>
+              <p class="help-block text-danger"></p>
             </div>
           </div>
-          <!-- input box for url-->
+          <br>
           <div class="row control-group">
-            <div class="form-group col-xs-12" ng-class="{'has-error': addItemForm.itemURL.$invalid}">
-              <div class="form-group has-success has-feedback">
-
-                <label>Item URL:</label>
-                <input type="text" name="itemURL" class="form-control" placeholder="Enter the website address. ie) www.amazon.com" id="inputSuccess2" aria-describedby="inputSuccess2Status" ng-model="item.URL"
-                                                                                                                                                                                             required ng-pattern="/(ae|crateandbarrel|disneystore|costco|neimanmarcus|barnesandnoble|target|amazon|nordstrom).com/">
-                 <span class="glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.itemURL.$error.required || addItemForm.itemURL.$error.pattern"></span>
-                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.itemURL.$error.required || addItemForm.itemURL.$error.pattern"></span>
-                <span class="help-block" ng-show="addItemForm.itemURL.$error.required">Required</span>
-                <span class="help-block" ng-show="addItemForm.itemURL.$error.pattern">Not a valid URL</span>
-              </div>
-            </div>
-            <!-- begin : a list of supported website-->
+            <!--website list-->
             <div class="form-group col-xs-12">
               <div class="panel-group">
                 <div class="panel panel-default">
@@ -55,39 +40,83 @@
                   </div>
                 </div>
               </div>
+            </div><!--website list-->
+            <!-- input box for url-->
+            <div class="form-group col-xs-12" ng-class="{'has-error': addItemForm.itemURL.$invalid}">
+              <div class="form-group has-success has-feedback">
+                <label>Item URL:</label>
+                <p class="form-instructions">Enter full item URL</p>
+                <input type="text" name="itemURL" class="form-control" id="inputSuccess2" aria-describedby="inputSuccess2Status" ng-model="item.URL"
+                 placeholder="example: https://www.amazon.com/path/to/your/item"
+                 required ng-pattern="/(ae|crateandbarrel|disneystore|costco|neimanmarcus|barnesandnoble|target|amazon|nordstrom).com/">
+                 <span class="icon-down glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.itemURL.$error.required || addItemForm.itemURL.$error.pattern"></span>
+                <span class="icon-down glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.itemURL.$error.required || addItemForm.itemURL.$error.pattern"></span>
+                <span class="help-block" ng-show="addItemForm.itemURL.$error.required">Required</span>
+                <span class="help-block" ng-show="addItemForm.itemURL.$error.pattern">Not a valid URL</span>
+              </div>
+            </div>
+          </div>
+          <!--input box for a nick name-->
+          <div class="row control-group">
+            <div class="form-group col-xs-12"
+              ng-class="{'has-error': addItemForm.itemNickname.$invalid}">
+              <div class="form-group has-success has-feedback">
+                <label >Item Name:</label>
+                <p class="form-instructions">Enter up to 8 characters to nickname your item</p>
+                <input type="text" name="itemNickname"
+                  class="form-control" id="inputSuccess2"
+                  placeholder="example: my shoes"
+                  aria-describedby="inputSuccess2Status" ng-model="item.nickName"
+                  required ng-minlength="3" ng-maxlength="8"/>
+                <span class="icon-down glyphicon glyphicon-ok form-control-feedback"
+                  ng-hide="addItemForm.itemNickname.$error.required ||
+                  addItemForm.itemNickname.$error.minlength ||
+                  addItemForm.itemNickname.$error.maxlength">
+                </span>
+                <span class="icon-down glyphicon glyphicon-remove form-control-feedback"
+                  ng-show="addItemForm.itemNickname.$error.required ||
+                  addItemForm.itemNickname.$error.minlength ||
+                  addItemForm.itemNickname.$error.maxlength">
+                </span>
+                <span class="help-block" ng-show="addItemForm.itemNickname.$error.required">Required</span>
+                <span class="help-block" ng-show="addItemForm.itemNickname.$error.minlength">Must be more than 2 characters</span>
+                <span class="help-block" ng-show="addItemForm.itemNickname.$error.maxlength">Must be less than 9 characters</span>
+              </div>
             </div>
           </div>
           <!--input box for price-->
           <div class="row control-group">
             <div class="form-group col-xs-12" ng-class="{'has-error': addItemForm.idealPrice.$invalid}">
               <div class="form-group has-success has-feedback">
-                <label>Ideal Price:</label>
-                <input type="number" name="idealPrice" class="form-control" placeholder="Tell us your ideal price! The current price is : {{item.currentPrice}}" id="inputSuccess2" aria-describedby="inputSuccess2Status"  ng-model="item.idealPrice" required>
-                <span class="glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.idealPrice.$error.required || addItemForm.idealPrice.$error.number"></span> 
-                <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.idealPrice.$error.required || addItemForm.idealPrice.$error.number"></span>
+                <label>Target Price:</label>
+                <p class="form-instructions">Set your target price! The current price is: {{item.currentPrice}}</p>
+                <input type="number" name="idealPrice" class="form-control"
+                id="inputSuccess2" aria-describedby="inputSuccess2Status"  ng-model="item.idealPrice"
+                placeholder="example: 10"
+                required>
+                <span class="icon-down glyphicon glyphicon-ok form-control-feedback" ng-hide="addItemForm.idealPrice.$error.required || addItemForm.idealPrice.$error.number"></span>
+                <span class="icon-down glyphicon glyphicon-remove form-control-feedback" ng-show="addItemForm.idealPrice.$error.required || addItemForm.idealPrice.$error.number"></span>
                 <span class="help-block" ng-show="addItemForm.idealPrice.$error.required">Required</span>
                 <span class="help-block" ng-show="addItemForm.idealPrice.$error.number">Not a number!</span>
               </div>
             </div>
           </div>
-          <!--input box for img-->
-          <div class="row control-group">
-            <div class="form-group col-xs-12 floating-label-form-group controls">
-              <label>Preview image</label>
-              <div>
-                <img ng-src="{{ item.imageUrl }}" rows="5">
-              </div>
-              <p class="help-block text-danger"></p>
-            </div>
-          </div>
-          <br>
+          <!--submit button-->
           <div id="success"></div>
           <div class="row">
             <div class="form-group col-xs-12">
-              <button type="submit" class="btn btn-round btn-success btn-lg light-blue-background">
-                <span class="fa fa-plus"></span>
-                <span>Add Item</span>
-              </button>
+              <div ng-hide="!item.imageUrl">
+                <button type="submit" class="btn btn-round btn-lg white-text light-blue-background">
+                  <span class="fa fa-plus"> </span>
+                  <span>Track Item</span>
+                </button>
+              </div>
+              <div ng-hide="item.imageUrl">
+                <button type="submit" id="load-message-btn" class="btn btn-round btn-lg">
+                  Tracking Item
+                  <img id="load-spinner" ng-hide="addItemForm.itemURL.$error.required || addItemForm.itemURL.$error.pattern"src="../../assets/spinner.gif">
+                </button>
+              </div>
             </div>
           </div>
         </form>

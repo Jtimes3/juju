@@ -27,6 +27,7 @@ module.exports = {
       return t.oneOrNone('INSERT INTO items (productTitle, itemUrl, itemImageUrl, currentPrice) SELECT ${productTitle}, ${itemUrl}, ${itemImageUrl}, ${currentPrice} WHERE NOT EXISTS (SELECT 1 FROM items WHERE itemUrl=${itemUrl})', data)
       .catch(function(err){
         console.log('error adding item: ', err);
+        res.status(400).send(err)
       })
       .then(function(){
         return t.oneOrNone('SELECT id FROM items WHERE itemUrl=${itemUrl}', data)
